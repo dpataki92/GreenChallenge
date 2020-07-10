@@ -10,7 +10,48 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_202440) do
+ActiveRecord::Schema.define(version: 2020_07_09_174507) do
+
+  create_table "challenges", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string "content"
+    t.integer "post_id"
+    t.integer "user_id"
+  end
+
+  create_table "commitments", force: :cascade do |t|
+    t.string "regularity"
+    t.integer "challenge_id"
+    t.integer "user_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+  end
+
+  create_table "groups_challenges", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "challenge_id"
+  end
+
+  create_table "memberships", force: :cascade do |t|
+    t.string "type"
+    t.integer "user_id"
+    t.integer "group_id"
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "title"
+    t.string "content"
+    t.integer "likes"
+    t.integer "user_id"
+    t.integer "group_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
