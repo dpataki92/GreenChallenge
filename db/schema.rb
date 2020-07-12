@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_174507) do
+ActiveRecord::Schema.define(version: 2020_07_12_153155) do
 
   create_table "challenges", force: :cascade do |t|
     t.string "title"
@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_07_09_174507) do
     t.integer "password_digest"
     t.string "country"
     t.integer "points"
+    t.string "uid"
   end
 
 end
