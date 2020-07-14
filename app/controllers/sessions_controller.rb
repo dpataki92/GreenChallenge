@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+
     def home
     end
 
@@ -17,14 +18,33 @@ class SessionsController < ApplicationController
     end
 
     def signup_manual
+        @user = User.new(user_params)
+        
+        if @user.save
+            session[:user_id] = @user.id
+
+            render "/users/#{@user.id}"
+        else
+            flash[:alert] = "Invalid user data"
+            render "/signup"
+        end
     end
 
     def login_manual
+        user = User.find_by(name: params[:user][:name])
+        return head(:forbidden) unless user.authenticate(params[:user][:password])
+        session[:user_id] = user.id
+
+        redirect_to "/signup"
     end
      
     private
      
     def auth
         request.env['omniauth.auth']
+    end
+
+    def user_params
+        params.require(:user).permit(:name, :email, :password, :country)
     end
 end
