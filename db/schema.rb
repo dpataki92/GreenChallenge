@@ -17,6 +17,11 @@ ActiveRecord::Schema.define(version: 2020_07_12_153155) do
     t.string "description"
   end
 
+  create_table "challenges_groups", id: false, force: :cascade do |t|
+    t.integer "challenge_id", null: false
+    t.integer "group_id", null: false
+  end
+
   create_table "comments", force: :cascade do |t|
     t.string "content"
     t.integer "post_id"
@@ -34,13 +39,8 @@ ActiveRecord::Schema.define(version: 2020_07_12_153155) do
     t.string "description"
   end
 
-  create_table "groups_challenges", force: :cascade do |t|
-    t.integer "group_id"
-    t.integer "challenge_id"
-  end
-
   create_table "memberships", force: :cascade do |t|
-    t.string "type"
+    t.string "membership_type", default: "simple"
     t.integer "user_id"
     t.integer "group_id"
   end
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 2020_07_12_153155) do
     t.string "email"
     t.integer "password_digest"
     t.string "country"
-    t.integer "points"
+    t.integer "points", default: 0
     t.string "uid"
   end
 

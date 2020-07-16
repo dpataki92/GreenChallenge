@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :email
       t.integer :password_digest
       t.string :country
-      t.integer :points
+      t.integer :points, default: 0
     end
   end
 end
