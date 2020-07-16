@@ -48,7 +48,7 @@ ActiveRecord::Schema.define(version: 2020_07_12_153155) do
   create_table "posts", force: :cascade do |t|
     t.string "title"
     t.string "content"
-    t.integer "likes"
+    t.integer "likes", default: 0
     t.integer "user_id"
     t.integer "group_id"
   end
