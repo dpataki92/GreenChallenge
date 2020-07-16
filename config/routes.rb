@@ -3,11 +3,10 @@ Rails.application.routes.draw do
 
   resources :users, only: [:index, :new, :create, :destroy]
 
-  #routes for SessionsController
-
-  get "/", to: "sessions#home"
-  get "/signup", to: "sessions#signup_page"
-  post "/signup", to: "sessions#signup_manual"
-  post "/login", to: "sessions#login_manual"
-  get '/auth/:provider/callback', to: 'sessions#create'
+  # routes for SessionsController
+    get "/", to: "sessions#home"
+    get "/signup", to: "sessions#signup_page"
+    post "/signup", to: "sessions#manual_signup"
+    post "/login", to: "sessions#manual_login"
+    get '/auth/:provider/callback', to: 'sessions#create'
 end

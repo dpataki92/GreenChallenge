@@ -1,8 +1,10 @@
 class SessionsController < ApplicationController
 
+    # rendering view for third-party and manual login / signup
     def home
     end
 
+    # finds / creates and logs in user based on third-party authentication
     def create
         @user = User.find_or_create_by(uid: auth['uid']) do |u|
             u.name = auth['info']['name']
@@ -10,33 +12,36 @@ class SessionsController < ApplicationController
         end
 
         session[:user_id] = @user.id
-     
-        render "/users/#{@user.id}"
+    
+        redirect_to "/users/#{@user.id}"
     end
 
+    # handles manual login and authentication
+    def manual_login
+        @user = User.find_by(name: params[:user][:name])
+        return head(:forbidden) unless user.authenticate(params[:user][:password])
+        session[:user_id] = user.id
+
+        redirect_to "/users/#{@user.id}"
+    end
+
+    # renders form for manual signup
     def signup_page
     end
 
-    def signup_manual
+    # handles manual signup and aithentication
+    def manual_signup
         @user = User.new(user_params)
         
         if @user.save
             session[:user_id] = @user.id
 
-            render "/users/#{@user.id}"
+            redirect_to "/users/#{@user.id}"
         else
-            flash[:alert] = "Invalid user data"
-            render "/signup"
+            redirect_to "/signup", notice: "Invalid user data!"
         end
     end
 
-    def login_manual
-        user = User.find_by(name: params[:user][:name])
-        return head(:forbidden) unless user.authenticate(params[:user][:password])
-        session[:user_id] = user.id
-
-        redirect_to "/signup"
-    end
      
     private
      
