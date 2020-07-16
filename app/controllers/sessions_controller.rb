@@ -18,11 +18,16 @@ class SessionsController < ApplicationController
 
     # handles manual login and authentication
     def manual_login
+        
         @user = User.find_by(name: params[:user][:name])
-        return head(:forbidden) unless user.authenticate(params[:user][:password])
-        session[:user_id] = user.id
+        binding.pry
+        if @user.authenticate(params[:user][:password])
+            session[:user_id] = @user.id
 
-        redirect_to "/users/#{@user.id}"
+            redirect_to "/users/#{@user.id}"
+        else
+            redirect_to "/",  notice: "Sorry, invalid data!"
+        end
     end
 
     # renders form for manual signup

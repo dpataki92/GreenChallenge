@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   root "sessions#home"
 
-  resources :users, only: [:index, :new, :create, :destroy]
+  resources :users, only: [:index, :show]
 
   # routes for SessionsController
     get "/", to: "sessions#home"

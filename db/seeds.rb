@@ -145,7 +145,7 @@
 
 # assigning random comments to posts
     20.times do
-        post = Post.all[rand 0..29]
+        post = Post.all[rand 0..(Post.all.size)]
 
         post.comments.create(content: "consectetur adipisicing elit", user: User.all[rand 0..11])
     end
