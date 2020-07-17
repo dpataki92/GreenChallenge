@@ -143,9 +143,12 @@
         User.all[user_number].posts.create(title: title, content: content, group: Group.all[group_number])
     end
 
+
 # assigning random comments to posts
     20.times do
         post = Post.all[rand 0..(Post.all.size)]
 
         post.comments.create(content: "consectetur adipisicing elit", user: User.all[rand 0..11])
     end
+
+    

@@ -9,4 +9,5 @@ Rails.application.routes.draw do
     post "/signup", to: "sessions#manual_signup"
     post "/login", to: "sessions#manual_login"
     get '/auth/:provider/callback', to: 'sessions#create'
+
 end

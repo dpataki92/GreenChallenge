@@ -20,11 +20,11 @@ class SessionsController < ApplicationController
     def manual_login
         
         @user = User.find_by(name: params[:user][:name])
-        binding.pry
-        if @user.authenticate(params[:user][:password])
+     
+        if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
 
-            redirect_to "/users/#{@user.id}"
+            redirect_to "/users"
         else
             redirect_to "/",  notice: "Sorry, invalid data!"
         end
