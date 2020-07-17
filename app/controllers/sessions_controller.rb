@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
         session[:user_id] = @user.id
     
-        redirect_to "/users/#{@user.id}"
+        redirect_to "/users"
     end
 
     # handles manual login and authentication

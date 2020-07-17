@@ -10,5 +10,6 @@ class User < ApplicationRecord
     
     validates :name, presence: true
     validates :email, presence: true, format: /.+@.+\.{1}.{2,}/
+    validates :email, uniqueness: true
 
 end
