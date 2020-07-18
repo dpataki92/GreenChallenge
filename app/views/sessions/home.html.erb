@@ -1,11 +1,14 @@
 
-    <div class="container">
+    
+    <%= content_tag(:div, class: "container") do %>
+
     <form action="/login" method="post">
-        <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+    <%= form_tag("/login") do%>
+        
         <div class="row">
         <h2 style="text-align:center">Login with Social Media or Manually</h2>
         <div class="vl">
-            <span class="vl-innertext">or</span>
+        <span class="vl-innertext">or</span>
         </div>
 
         <div class="col">
@@ -21,18 +24,14 @@
         </div>
 
         <div class="col">
-            <div class="hide-md-lg">
-            <p>Or sign in manually:</p>
-            </div>
-            <input type="text" name="user[name]" placeholder="Username" required>
-            <input type="password" name="user[password]" placeholder="Password" required>
+            <label><input type="text" name="user[name]" placeholder="Name" required></label>
+            <label><input type="password" name="user[password]" placeholder="Password" required></label>
             <input type="submit" value="Login">
         </div>
 
         </div>
-    </form>
-    </div>
-
+    <%end%>
+    <%end%>
     <div class="bottom-container">
     <div class="row">
         <div class="col">
