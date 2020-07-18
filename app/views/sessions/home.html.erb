@@ -22,12 +22,14 @@
         <%end%>
 
         <%= content_tag(:div, class: "col") do %>
+              <%=label_tag "user[name]" do%>
+              <%= text_field_tag("user[name]", nil, placeholder: "Name", required: true)%>
+              <%end%>
+              <%=label_tag "user[password]" do%>
+              <%= password_field_tag("user[password]", nil, placeholder: "Password", required: true)%>
+              <%end%>
+              <%= submit_tag("Login")%>
         <%end%>
-        <div class="col">
-            <label><input type="text" name="user[name]" placeholder="Name" required></label>
-            <label><input type="password" name="user[password]" placeholder="Password" required></label>
-            <input type="submit" value="Login">
-        </div>
 
         <%end%>
     <%end%>
