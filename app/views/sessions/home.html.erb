@@ -34,15 +34,11 @@
         <%end%>
     <%end%>
     <%end%>
-    <div class="bottom-container">
-    <div class="row">
-        <div class="col">
-        <a href="/signup" style="color:white" class="btn">Sign up</a>
-        </div>
-        <div class="col">
-        <a href="#" style="color:white" class="btn">Forgot password?</a>
-        </div>
-    </div>
-    </div>
+
+    <%= content_tag(:div, class: "bottom-container") do %>
+      <%= content_tag(:div, class: "row") do %>
+        <%= link_to "Sign up", "/signup", style: "color:white", class: "btn" %>
+      <%end%>
+    <%end%>
 
 
