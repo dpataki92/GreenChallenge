@@ -1,12 +1,12 @@
 
-        <div id="signup">
-
-            <form action="/signup" method="post">
-            <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
-            <input type="text" name="user[name]" placeholder="Name" required>
-            <input type="text" name="user[email]" placeholder="Email" required>
-            <input type="password" name="user[password]" placeholder="Password" required>
-            <input type="text" name="user[country]" list="countrynames" placeholder="Country">
+     
+        <%= content_tag(:div, id: "signup") do%>
+            
+            <%= form_tag("/signup") do%>
+            <%= text_field_tag("user[name]", nil, placeholder: "Name", required: true)%>
+            <%= text_field_tag("user[email]", nil, placeholder: "Email", required: true)%>
+            <%= password_field_tag("user[password]", nil, placeholder: "Password", required: true)%>
+            <%= text_field_tag("user[country]", nil, placeholder: "Country", list: "countrynames")%>
             <datalist id="countrynames">
                 <option value="Afganistan">Afghanistan</option>
                 <option value="Albania">Albania</option>
@@ -256,6 +256,6 @@
                 <option value="Zimbabwe">Zimbabwe</option>
             </datalist>
                 
-            <input type="submit" value="Sign up">
-            </form>
-        </div>
+            <%= submit_tag "Sign up"%>
+            <%end%>
+        <%end%>
