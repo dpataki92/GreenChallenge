@@ -15,18 +15,14 @@
           <%= content_tag(:span, class: "vl-innertext") do %>or<%end%>
         <%end%>
 
-        <div class="col">
-            <a href="/auth/facebook" class="fb btn"> 
-            <i class="fa fa-facebook fa-fw"></i> Login with Facebook
-            </a>
-            <a href="/auth/twitter" class="twitter btn">
-            <i class="fa fa-twitter fa-fw"></i> Login with Twitter
-            </a>
-            <a href="/auth/google_oauth2" class="google btn">
-            <i class="fa fa-google fa-fw"></i> Login with Google
-            </a>
-        </div>
+        <%= content_tag(:div, class: "col") do %>
+            <%= link_to "Login with Facebook", "/auth/facebook", action: "create", class: "fb btn"%>
+            <%= link_to "Login with Twitter", "/auth/twitter", class: "twitter btn"%>
+            <%= link_to "Login with Google", "/auth/google_oauth2", class: "google btn"%>
+        <%end%>
 
+        <%= content_tag(:div, class: "col") do %>
+        <%end%>
         <div class="col">
             <label><input type="text" name="user[name]" placeholder="Name" required></label>
             <label><input type="password" name="user[password]" placeholder="Password" required></label>
