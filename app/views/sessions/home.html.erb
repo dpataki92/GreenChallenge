@@ -2,14 +2,18 @@
     
     <%= content_tag(:div, class: "container") do %>
 
-    <form action="/login" method="post">
     <%= form_tag("/login") do%>
         
-        <div class="row">
-        <h2 style="text-align:center">Login with Social Media or Manually</h2>
-        <div class="vl">
-        <span class="vl-innertext">or</span>
-        </div>
+        <%= content_tag(:div, class: "row") do %>
+          <%= content_tag(:h2, style: "text-align:center") do %>
+            Welcome to GreenChallenge!
+          <%end%>
+          <%= content_tag(:h4, style: "text-align:center") do %>
+            Login with Social Media or Manually
+          <%end%>
+        <%= content_tag(:div, class: "vl") do %>
+          <%= content_tag(:span, class: "vl-innertext") do %>or<%end%>
+        <%end%>
 
         <div class="col">
             <a href="/auth/facebook" class="fb btn"> 
@@ -29,7 +33,7 @@
             <input type="submit" value="Login">
         </div>
 
-        </div>
+        <%end%>
     <%end%>
     <%end%>
     <div class="bottom-container">
