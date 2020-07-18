@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
         if @user.save
             session[:user_id] = @user.id
 
-            redirect_to "/users/#{@user.id}"
+            redirect_to "/users"
         else
             redirect_to "/signup", notice: "Invalid user data!"
         end

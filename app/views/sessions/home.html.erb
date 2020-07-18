@@ -1,16 +1,4 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>GreenChallenge</title>
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    <link rel="stylesheet" href="/app/assets/stylesheets/login_page.css">
-  </head>
-
-  <body>
     <div class="container">
     <form action="/login" method="post">
         <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
@@ -55,6 +43,5 @@
         </div>
     </div>
     </div>
-  </body>
-</html>
+
 
