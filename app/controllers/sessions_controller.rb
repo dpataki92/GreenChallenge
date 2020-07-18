@@ -13,7 +13,7 @@ class SessionsController < ApplicationController
 
         session[:user_id] = @user.id
     
-        redirect_to "/users"
+        redirect_to "/users/#{@user.id}"
     end
 
     # handles manual login and authentication
@@ -24,7 +24,7 @@ class SessionsController < ApplicationController
         if @user && @user.authenticate(params[:user][:password])
             session[:user_id] = @user.id
 
-            redirect_to "/users"
+            redirect_to "/users/#{@user.id}"
         else
             redirect_to "/",  notice: "Sorry, invalid data!"
         end
@@ -41,7 +41,7 @@ class SessionsController < ApplicationController
         if @user.save
             session[:user_id] = @user.id
 
-            redirect_to "/users"
+            redirect_to "/users/#{@user.id}"
         else
             redirect_to "/signup", notice: "Invalid user data!"
         end
