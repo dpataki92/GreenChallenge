@@ -62,8 +62,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
           <p>My Groups</p>
           <p>
             <%@user.groups.each do |group|%>
-            <% colors = ["d1", "d2", "d3", "d4", "d5", "l1", "l2","l3", "l4", "l5"] %>
-            <% color = colors[rand 0..(colors.size)]%>
+            <% color = ["d1", "d2", "d3", "d4", "d5", "l1", "l2","l3", "l4", "l5"][rand 0..(colors.size)]%>
               <span class="w3-tag w3-small w3-theme-<%=color%>"><%=group.name%></span>
             <%end%>
           </p>
