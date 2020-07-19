@@ -4,7 +4,7 @@
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">Share A Post:</h6>
               <%= form_tag("/posts") do%>
-              <%= text_area_tag "post[content]", nil, cols: "81", rows: "2", placeholder: "Type your post here...", class: "w3-border w3-padding"%><br>
+              <%= content_tag(:span, nil, class:"textarea", role: "textbox", contenteditable: true)%>
               <%= text_field_tag("post[group]", nil, placeholder: "Associate a group with the post...", list: "groups", class: "w3-border w3-padding")%><br>
               <datalist id="groups">
                 <%@user.groups.all.each do |g|%>
@@ -21,7 +21,7 @@
       <%@user.newsfeed.each do |post|%>
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="<%=post.user.avatar%>" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <span class="w3-right w3-opacity">1 min</span>
+        <span class="w3-right w3-opacity"><%=time_ago_in_words post.created_at%></span>
         <h4><%=post.user.name%></h4><br>
         <hr class="w3-clear">
         <p><%=post.content%></p>
@@ -32,10 +32,12 @@
           </div>
         </div>
         <button type="button" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button> 
+        <button type="button" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+        <span class="w3-right w3-opacity"><%=post.likes.to_s + " likes"%></span> 
+        <span class="w3-right w3-opacity" style="margin-right:5px;"><%=post.comments.size.to_s + " comments"%></span>
       </div>
       <%end%>
-      
+
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/w3images/avatar2.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <span class="w3-right w3-opacity">1 min</span>
