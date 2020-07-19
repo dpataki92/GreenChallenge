@@ -120,7 +120,7 @@
     group5.challenges << challenge49
 
 # assigning members to the groups
-
+    
     user1.memberships.create(membership_type: "creator", group: group2)
     user3.memberships.create(membership_type: "creator", group: group1)
     user5.memberships.create(membership_type: "creator", group: group3)
@@ -147,7 +147,7 @@
 # assigning random comments to posts
     20.times do
         post = Post.all[rand 0..(Post.all.size)]
-
+     
         post.comments.create(content: "consectetur adipisicing elit", user: User.all[rand 0..11])
     end
 
