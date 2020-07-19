@@ -17,13 +17,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
   <a href="/users/<%=@user.id%>" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i> GreenChallenge</a>
-  <a href="/users/<%=@user.id%>/edit" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="Edit Profile"><i class="fa fa-user"></i></a>
-  <div class="w3-dropdown-hover w3-hide-small">
-    <button class="w3-button w3-padding-large" title="Notifications"><i class="fa fa-bell"></i><span class="w3-badge w3-right w3-small w3-green">3</span></button>     
-    <div class="w3-dropdown-content w3-card-4 w3-bar-block" style="width:300px">
-      <a href="#" class="w3-bar-item w3-button">One new friend request</a>
-      <a href="#" class="w3-bar-item w3-button">John Doe posted on your wall</a>
-      <a href="#" class="w3-bar-item w3-button">Jane likes your post</a>
+  <div class="w3-dropdown-hover w3-hide-small w3-right">
+    <button class="w3-button w3-padding-large" title="Notifications"><a href="/users/<%=@user.id%>/edit" title="Edit Profile"><i class="fa fa-user"></i></a>
+    </button>     
+    <div class="w3-dropdown-content w3-card-4 w3-bar-block listRight" style="width:300px">
+      <a href="#" class="w3-bar-item w3-button">Edit profile</a>
+      <a href="#" class="w3-bar-item w3-button">Log out</a>
     </div>
   </div>
  </div>
@@ -50,14 +49,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <!-- Accordion -->
       <div class="w3-card w3-round">
         <div class="w3-white">
-          <button onclick="myFunction('Demo1')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> My Groups</button>
-          <div id="Demo1" class="w3-hide w3-container">
-            <p>Some text..</p>
-          </div>
-          <button onclick="myFunction('Demo2')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> My Events</button>
-          <div id="Demo2" class="w3-hide w3-container">
-            <p>Some other text..</p>
-          </div>
+          <button onclick="location.href='/challenges'" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> Challenges</button>
+          <button onclick="location.href='/groups'" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Groups</button>
           <button onclick="myFunction('Demo3')" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right"></i> My Photos</button>
           <div id="Demo3" class="w3-hide w3-container">
          <div class="w3-row-padding">
