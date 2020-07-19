@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2020_07_12_153155) do
     t.string "password_digest"
     t.string "country"
     t.integer "points", default: 0
+    t.string "avatar", default: "/images/avatar7.jpg"
     t.string "uid"
   end
 
