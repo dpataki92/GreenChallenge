@@ -4,7 +4,8 @@
             <div class="w3-container w3-padding">
               <h6 class="w3-opacity">Share A Post:</h6>
               <%= form_tag("/posts") do%>
-              <%= content_tag(:span, nil, class:"textarea", role: "textbox", contenteditable: true)%>
+              <%= text_field_tag("post[title]", nil, placeholder: "Provide a title...", class: "w3-border w3-padding text-field-post", required: true)%>
+              <%= content_tag(:span, nil, class:"textarea", name:"post[content]", role: "textbox", contenteditable: true)%>
               <%= text_field_tag("post[group]", nil, placeholder: "Associate a group with the post...", list: "groups", class: "w3-border w3-padding")%><br>
               <datalist id="groups">
                 <%@user.groups.all.each do |g|%>

@@ -2,16 +2,11 @@
     <div class="w3-col m12">
         <div class="w3-card w3-round w3-white">
         <div class="w3-container w3-padding">
-            <h6 class="w3-opacity">Share A Post:</h6>
-            <%= form_tag("/posts") do%>
-            <%= content_tag(:span, nil, class:"textarea", role: "textbox", contenteditable: true)%>
-            <%= text_field_tag("post[group]", nil, placeholder: "Associate a group with the post...", list: "groups", class: "w3-border w3-padding")%><br>
-            <datalist id="groups">
-            <%@user.groups.all.each do |g|%>
-                <option value="<%=g.name%>"><%=g.name%></option>
-            <%end%>
-            </datalist>
-            <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
+            <h6 class="w3-opacity">Have an idea? Create a new challenge here:</h6>
+            <%= form_tag("/challenges") do%>
+            <%= text_field_tag("challenge[title]", nil, placeholder: "Provide a title...", class: "w3-border w3-padding text-field-post", required: true)%>
+            <%= content_tag(:span, nil, class:"textarea-challenge", name:"challenge[description]", role: "textbox", contenteditable: true, required: true)%>
+            <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Create challenge</button> 
             <%end%>
         </div>
         </div>
@@ -22,10 +17,9 @@
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/images/challenge1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <h4><a href="/challenge/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
-        <hr class="w3-clear"> 
-        <button type="button"onclick="location.href='/challenge/<%=challenge.id%>/commit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to challenge</button> 
-        <button type="button" onclick="location.href='/challenge/<%=challenge.id%>'" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i> Get details</button>
         <span class="w3-opacity"><%="#{challenge.groups.size} groups"%></span>
-        <span class="w3-opacity"><%="#{challenge.users.size} users"%></span>
+        <span class="w3-opacity" style="margin-right:5px;"><%="#{challenge.users.size} users"%></span>
+        <hr class="w3-clear"> 
+        <button type="button"onclick="location.href='/challenge/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to challenge</button> 
       </div>
       <%end%>

@@ -239,7 +239,7 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     border:1px solid #ccc !important;
 }
 
-.textarea {
+.textarea, .textarea-challenge {
     display: block;
     width: 100%;
     overflow: hidden;
@@ -248,11 +248,21 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     line-height: 20px;
     padding: 8px 16px !important;
     border:1px solid #ccc !important;
-    margin-bottom: 2px;
+    margin-bottom: 5px;
+  }
+
+
+  .text-field-post {
+    margin-bottom: 5px;
   }
   
   .textarea[contenteditable]:empty::before {
     content: "Type your post here...";
+    color: gray;
+  }
+
+  .textarea-challenge[contenteditable]:empty::before {
+    content: "Provide a description...";
     color: gray;
   }
 
