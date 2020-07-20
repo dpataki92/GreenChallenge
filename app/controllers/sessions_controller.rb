@@ -48,6 +48,12 @@ class SessionsController < ApplicationController
         end
     end
 
+    # logs out user
+    def destroy
+        session.clear
+        redirect_to "/"
+    end
+
      
     private
      
