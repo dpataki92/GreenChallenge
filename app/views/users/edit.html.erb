@@ -2,7 +2,7 @@
     <div class="w3-col m12">
         <div class="w3-card w3-round w3-white">
         <div class="w3-container w3-padding">
-            <h6 class="w3-opacity">Edit your profile:</h6>
+            <h6 class="w3-opacity">Edit your data:</h6>
             <%= form_for @user do |f|%>
             Name: <%= f.text_field(:name, class: "w3-border w3-padding")%><br>
             Email: <%= f.text_field(:email, class: "w3-border w3-padding")%><br>
@@ -255,12 +255,15 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
             </datalist>
-            Avatar:<br><br>
-            <%avatar_selection.each do |a|%>
-                 <button onclick="create_hidden_field(a)" class="w3-button"><img src="<%=a%>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></button>
-            <%end%><br><br>
             <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Save</button> 
-            <%end%>
+            <%end%><br>
+            <h6 class="w3-opacity">Change your avatar:</h6><br>
+            <%avatar_selection.each do |a|%>
+                 <%=form_tag("/users/#{@user.id}", method: :patch, style:"display:inline;") do%>
+                    <button type="submit" name="user[avatar]" value="<%=a%>"><img src="<%=a%>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></button>
+                 <%end%>
+            <%end%><br><br>
+            
         </div>
         </div>
     </div>
