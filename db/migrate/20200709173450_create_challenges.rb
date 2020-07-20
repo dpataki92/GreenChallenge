@@ -3,6 +3,8 @@ class CreateChallenges < ActiveRecord::Migration[6.0]
     create_table :challenges do |t|
       t.string :title
       t.string :description
+
+      t.timestamps
     end
   end
 end

@@ -1,5 +1,12 @@
 class ChallengesController < ApplicationController
+    
+    include UserHelper
+    
+    layout "users"
+
     def index
+        @user = current_user
+        @challenges =  Challenge.all
     end
 
     def show

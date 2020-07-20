@@ -4,7 +4,7 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :name
       t.string :email
       t.string :password_digest
-      t.string :country
+      t.string :country, default: ""
       t.integer :points, default: 0
       t.string :avatar, default: "/images/avatar7.jpg"
     end
