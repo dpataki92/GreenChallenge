@@ -1,0 +1,14 @@
+<div class="w3-row-padding">
+    <div class="w3-col m12">
+        <div class="w3-card w3-round w3-white">
+        <div class="w3-container w3-padding">
+            <h6 class="w3-opacity">Edit your profile:</h6>
+            <%= form_for @user do |f|%>
+            Name: <%= f.text_field(:name, class: "w3-border w3-padding")%><br>
+            Country: <%= f.text_field(:country, class: "w3-border w3-padding")%><br>
+            <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Save</button> 
+            <%end%>
+        </div>
+        </div>
+    </div>
+</div>
