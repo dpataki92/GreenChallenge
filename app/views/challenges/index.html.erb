@@ -14,6 +14,17 @@
 </div>
 
     <%@challenges.each do |challenge|%>
+      <%if challenge.creator = current_user.name%>
+      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <img src="/images/challenge1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <h4><a href="/challenge/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
+        <span class="w3-opacity"><%="#{challenge.groups.size} groups"%></span>
+        <span class="w3-opacity" style="margin-right:5px;"><%="#{challenge.users.size} users"%></span>
+        <hr class="w3-clear"> 
+        <%= button_to 'Edit challenge', challenge_path(challenge), method: :patch, class:"w3-button w3-theme-d1 w3-margin-bottom" %>
+        <%= button_to 'Delete challenge', "/challenges/#{challenge.id}", method: :delete, class:"w3-button w3-theme-d1 w3-margin-bottom" %>
+      </div>
+      <%else%>
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/images/challenge1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <h4><a href="/challenge/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
@@ -22,4 +33,5 @@
         <hr class="w3-clear"> 
         <button type="button"onclick="location.href='/challenge/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to challenge</button> 
       </div>
+      <%end%>
       <%end%>
