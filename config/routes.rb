@@ -3,6 +3,8 @@ Rails.application.routes.draw do
 
   resources :users, only: [:show, :edit, :update]
 
+  resources :challenges
+
   # routes for SessionsController
     get "/", to: "sessions#home"
     get "/signup", to: "sessions#signup_page"
