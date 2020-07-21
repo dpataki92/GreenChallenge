@@ -273,3 +273,19 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   .link-to:hover {
     text-decoration: underline;
 }
+
+  .sort-challenge {
+    margin:0;
+    padding:0;
+    list-style-type: none;
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  .el-item {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+  }
+  
