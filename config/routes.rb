@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     get "/challenges/:id/commit/:regularity", to: "challenges#commit"
     get "/challenges/:id/uncommit", to: "challenges#uncommit"
 
+  resources :groups
+
   # routes for SessionsController
     get "/", to: "sessions#home"
     get "/signup", to: "sessions#signup_page"
