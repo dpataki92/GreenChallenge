@@ -28,7 +28,7 @@ class ChallengesController < ApplicationController
     def create
         @challenge = Challenge.new(challenge_params)
         @challenge.creator = current_user.name
-        
+
         if @challenge.save
             redirect_to challenge_path(@challenge)
         else
@@ -38,6 +38,13 @@ class ChallengesController < ApplicationController
     end
 
     def update
+        @challenge = Challenge.find_by(id: params[:id])
+
+        if @challenge.update(challenge_params)
+            redirect_to challenges_path
+        else
+            redirect_to edit_challenge_path(@challenge)
+        end
     end
     
     def destroy
