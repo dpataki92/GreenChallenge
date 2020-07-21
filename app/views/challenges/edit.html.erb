@@ -9,7 +9,7 @@
             <%= text_field_tag("challenge[title]", @challenge.title, class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
             <%= text_area_tag("challenge[description]", @challenge.description, class:"textarea-challenge w3-opacity", required: true)%>
             <%= button_to 'Edit challenge', challenge_path(@challenge), method: :patch, class:"w3-button w3-theme-d1 w3-margin-bottom" %>
-            <%= button_to 'Delete challenge', "/challenges/#{@challenge.id}", method: :delete, class:"w3-button w3-theme-d1 w3-margin-bottom" %>
+            <%= button_to 'Delete challenge', "/challenges/#{@challenge.id}", method: :delete, class:"w3-button w3-theme-d1 w3-margin-bottom"%>
             <%end%>
         </div>
 </div>

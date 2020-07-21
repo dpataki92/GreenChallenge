@@ -48,6 +48,8 @@ class ChallengesController < ApplicationController
     end
     
     def destroy
+        Challenge.find_by(id: params[:id]).destroy
+        redirect_to challenges_path
     end
 
     def sort
