@@ -27,9 +27,9 @@ class ChallengesController < ApplicationController
 
     def create
         @challenge = Challenge.new(challenge_params)
+        @challenge.creator = current_user.name
         
         if @challenge.save
-            @challenge.creator = current_user.name
             redirect_to challenge_path(@challenge)
         else
             @challenges = Challenge.order(created_at: :desc)
@@ -58,6 +58,6 @@ class ChallengesController < ApplicationController
     private
 
     def challenge_params
-        params.require(:challenge).permit(:title, :description)
+        params.require(:challenge).permit(:title, :description, :creator)
     end
 end
