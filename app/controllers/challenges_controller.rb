@@ -5,7 +5,6 @@ class ChallengesController < ApplicationController
     layout "users"
 
     def index
-        @user = current_user
         @challenges = Challenge.all
     end
 
@@ -20,13 +19,12 @@ class ChallengesController < ApplicationController
 
     def create
         @challenge = Challenge.new(challenge_params)
-
+        
         if @challenge.save
             @challenge.creator = current_user.name
             redirect_to challenges_path
         else
             @challenges = Challenge.all
-            @user = current_user
             render :index
         end
     end

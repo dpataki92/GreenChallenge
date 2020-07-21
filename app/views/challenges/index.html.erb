@@ -14,7 +14,7 @@
 </div>
 
     <%@challenges.each do |challenge|%>
-      <%if challenge.creator = current_user.name%>
+      <%if current_user.name == challenge.creator%>
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/images/challenge1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <h4><a href="/challenge/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>

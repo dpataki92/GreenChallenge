@@ -16,12 +16,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
 <!-- Navbar -->
 <div class="w3-top">
  <div class="w3-bar w3-theme-d2 w3-left-align w3-large">
-  <a href="/users/<%=@user.id%>" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i> GreenChallenge</a>
+  <a href="/users/<%=current_user.id%>" class="w3-bar-item w3-button w3-hide-small w3-padding-large w3-hover-white" title="News"><i class="fa fa-globe"></i> GreenChallenge</a>
   <div class="w3-dropdown-hover w3-hide-small w3-right">
-    <button class="w3-button w3-padding-large" title="Notifications"><a href="/users/<%=@user.id%>/edit" title="Edit Profile"><i class="fa fa-user"></i></a>
+    <button class="w3-button w3-padding-large" title="Notifications"><a href="/users/<%=current_user.id%>/edit" title="Edit Profile"><i class="fa fa-user"></i></a>
     </button>     
     <div class="w3-dropdown-content w3-card-4 w3-bar-block listRight" style="width:300px">
-      <a href="/users/<%=@user.id%>/edit" class="w3-bar-item w3-button">Edit profile</a>
+      <a href="/users/<%=current_user.id%>/edit" class="w3-bar-item w3-button">Edit profile</a>
       <a href="/logout" class="w3-bar-item w3-button" onclick="return confirm('Are you sure you want to log out?');">Log out</a>
     </div>
   </div>
@@ -37,11 +37,11 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center"><%=@user.name%></h4>
-         <p class="w3-center"><img src="<%=@user.avatar%>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
+         <h4 class="w3-center"><%=current_user.name%></h4>
+         <p class="w3-center"><img src="<%=current_user.avatar%>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
-         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> <%=@user.email %></p>
-         <%if !@user.country.empty?%><p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%=@user.country %></p><%end%>
+         <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.email %></p>
+         <%if !current_user.country.empty?%><p><i class="fa fa-home fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.country %></p><%end%>
         </div>
       </div>
       <br>
@@ -51,7 +51,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <div class="w3-white">
           <button onclick="location.href='/challenges'" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-users fa-fw w3-margin-right" ></i> Challenges</button>
           <button onclick="location.href='/groups'" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-circle-o-notch fa-fw w3-margin-right"></i> Groups</button>
-          <button onclick="location.href='/users/<%=@user.id%>/lists'" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> To-do lists</button>
+          <button onclick="location.href='/users/<%=current_user.id%>/lists'" class="w3-button w3-block w3-theme-l1 w3-left-align"><i class="fa fa-calendar-check-o fa-fw w3-margin-right"></i> To-do lists</button>
         </div>      
       </div>
       <br>
@@ -61,7 +61,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <div class="w3-container">
           <p>My Groups</p>
           <p>
-            <%@user.groups.each do |group|%>
+            <%current_user.groups.each do |group|%>
             <% colors = ["d1", "d2", "d3", "d4", "d5", "l1", "l2","l3", "l4", "l5"] %>
             <% color = colors[rand 0..(colors.size)]%>
               <span class="w3-tag w3-small w3-theme-<%=color%>"><a href="/groups/<%=group.id%>" class="link-to"><%=group.name%></a></span>
@@ -87,12 +87,12 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p><strong>Total points:</strong></p>
-            <%=@user.points%>
+            <%=current_user.points%>
           <p><strong>Total challenges:</strong></p>
-            <%=@user.challenges.size%>
+            <%=current_user.challenges.size%>
           <p><strong>Posts shared:</strong></p>
-            <%=@user.posts.size%>
-          <p><button onclick="location.href='/users/<%=@user.id%>/reports'" class="w3-button w3-block w3-theme-l4">Generate Report</button></p>
+            <%=current_user.posts.size%>
+          <p><button onclick="location.href='/users/<%=current_user.id%>/reports'" class="w3-button w3-block w3-theme-l4">Generate Report</button></p>
         </div>
       </div>
       <br>
