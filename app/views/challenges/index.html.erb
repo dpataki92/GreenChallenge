@@ -4,8 +4,8 @@
         <div class="w3-container w3-padding">
             <h6 class="w3-opacity">Have an idea? Create a new challenge here:</h6>
             <%= form_tag("/challenges") do%>
-            <%= text_field_tag("challenge[title]", nil, placeholder: "Provide a title...", class: "w3-border w3-padding text-field-post", required: true)%>
-            <%= content_tag(:span, nil, class:"textarea-challenge", name:"challenge[description]", role: "textbox", contenteditable: true, required: true)%>
+            <%= text_field_tag("challenge[title]", nil, placeholder: "Provide a title...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
+            <%= text_area_tag("challenge[description]", nil, placeholder: "Provide a description...", class:"textarea-challenge w3-opacity", required: true)%>
             <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Create challenge</button> 
             <%end%>
         </div>

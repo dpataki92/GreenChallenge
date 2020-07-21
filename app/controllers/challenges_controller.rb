@@ -5,7 +5,7 @@ class ChallengesController < ApplicationController
     layout "users"
 
     def index
-        @challenges = Challenge.all
+        @challenges = Challenge.order(created_at: :desc)
     end
 
     def show
@@ -24,7 +24,8 @@ class ChallengesController < ApplicationController
             @challenge.creator = current_user.name
             redirect_to challenges_path
         else
-            @challenges = Challenge.all
+            binding.pry
+            @challenges = Challenge.order(created_at: :desc)
             render :index
         end
     end
