@@ -59,9 +59,27 @@ class ChallengesController < ApplicationController
             @challenges = Challenge.all.sort {|a, b| b.users.size <=> a.users.size}
         elsif params[:value] == "alphabet"
             @challenges = Challenge.all.sort {|a, b| a.title <=> b.title}
+        elsif params[:value] == "me"
+            @challenges = Challenge.where(:creator => current_user.name)
         end
        
         render :index
+    end
+
+    def commit
+        @challenge = Challenge.find_by(id: params[:id])
+
+        current_user.commitments.create(challenge: @challenge, regularity: params[:regularity])
+
+        redirect_to challenge_path(@challenge)
+    end
+
+    def uncommit
+        @challenge = Challenge.find_by(id: params[:id])
+
+        current_user.challenges.delete(@challenge)
+
+        redirect_to challenge_path(@challenge)
     end
 
     private

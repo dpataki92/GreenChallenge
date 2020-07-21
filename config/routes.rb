@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :challenges
   # additional routes for ChallengesController
     get "/challenges/sort/:value", to: "challenges#sort"
-
+    get "/challenges/:id/commit/:regularity", to: "challenges#commit"
+    get "/challenges/:id/uncommit", to: "challenges#uncommit"
   # routes for SessionsController
     get "/", to: "sessions#home"
     get "/signup", to: "sessions#signup_page"
