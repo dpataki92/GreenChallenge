@@ -14,6 +14,10 @@ class UsersController < ApplicationController
         redirect_to edit_user_path(@user)
     end
 
+    def lists
+        @commitments = current_user.commitments
+    end
+
     private
 
     def user_params

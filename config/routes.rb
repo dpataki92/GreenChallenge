@@ -2,12 +2,15 @@ Rails.application.routes.draw do
   root "sessions#home"
 
   resources :users, only: [:show, :edit, :update]
+  # additional routes for UsersController
+  get "/users/:id/lists", to: "users#lists"
 
   resources :challenges
   # additional routes for ChallengesController
     get "/challenges/sort/:value", to: "challenges#sort"
     get "/challenges/:id/commit/:regularity", to: "challenges#commit"
     get "/challenges/:id/uncommit", to: "challenges#uncommit"
+
   # routes for SessionsController
     get "/", to: "sessions#home"
     get "/signup", to: "sessions#signup_page"
