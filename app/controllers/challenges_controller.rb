@@ -16,6 +16,13 @@ class ChallengesController < ApplicationController
     end
 
     def edit
+        @challenge = Challenge.find_by(id: params[:id])
+        
+        if @challenge.creator == current_user.name
+            render :edit
+        else
+            redirect_to challenges_path
+        end
     end
 
     def create
