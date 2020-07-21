@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
     layout "users"
 
     def index
+        @groups = Group.all
     end
 
     def show

@@ -7,7 +7,7 @@
           <% end %>
         <% end %>
         <div class="w3-container w3-padding">
-            <h6 class="w3-opacity">Create your group here:</h6>
+            <h6 class="w3-opacity">Create your own group! Groups should be organized around a cross-cutting issue or geographical location</h6>
             <%= form_tag("/groups") do%>
             <%= text_field_tag("group[name]", nil, placeholder: "Provide a name...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
             <%= text_area_tag("group[description]", nil, placeholder: "What is the purpose of your group?", class:"textarea-group w3-opacity", required: true)%>
@@ -32,7 +32,7 @@
 </div>
 
     <%@groups.each do |group|%>
-      <%if current_user.name == group.creator%>
+      <%if current_user.memberships.find {|m| m.group == group} %>
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/images/group1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <h4><a href="/groups/<%=group.id%>" class="link-to"><%=group.title%></h4><a><br>
