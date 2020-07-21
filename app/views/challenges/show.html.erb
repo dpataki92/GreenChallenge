@@ -1,0 +1,19 @@
+<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+    <img src="<%="/images/challenge1.png"%>" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+    <span class="w3-right w3-opacity"><%=time_ago_in_words @challenge.created_at%></span>
+    <h4><%=@challenge.title%></h4><br>
+    <hr class="w3-clear">
+    <span class="w3-opacity">Created by <%=@challenge.creator%></span>
+    <p><%=@challenge.description%></p>
+    <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half">
+            </div>
+            <div class="w3-half">
+            </div>
+    </div>
+    <span class="w3-opacity">Commit to challenge:</span><br><br>
+    <button type="button"onclick="location.href='/challenges/<%=@challenge.id%>/commit'" name="regularity" value="daily" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> As daily challenge</button>
+    <button type="button"onclick="location.href='/challenges/<%=@challenge.id%>/commit'" name="regularity" value="occasional" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> As occasional challenge</button> 
+    <span class="w3-right w3-opacity"><%=@challenge.users.size.to_s + " users"%></span> 
+    <span class="w3-right w3-opacity" style="margin-right:5px;"><%=@challenge.groups.size.to_s + " groups"%></span>
+</div>

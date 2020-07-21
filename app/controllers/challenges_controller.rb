@@ -9,6 +9,7 @@ class ChallengesController < ApplicationController
     end
 
     def show
+        @challenge = Challenge.find_by(id: params[:id])
     end
 
     def new
@@ -22,9 +23,8 @@ class ChallengesController < ApplicationController
         
         if @challenge.save
             @challenge.creator = current_user.name
-            redirect_to challenges_path
+            redirect_to challenge_path(@challenge)
         else
-            binding.pry
             @challenges = Challenge.order(created_at: :desc)
             render :index
         end

@@ -1,6 +1,11 @@
 <div class="w3-row-padding">
     <div class="w3-col m12">
         <div class="w3-card w3-round w3-white">
+        <% if @challenge && @challange.errors.full_messages.any? %>
+          <% @challenge.errors.full_messages.each do |error_message| %>
+            <%= error_message if @challenge.errors.full_messages.first == error_message %> <br />
+          <% end %>
+        <% end %>
         <div class="w3-container w3-padding">
             <h6 class="w3-opacity">Have an idea? Create a new challenge here:</h6>
             <%= form_tag("/challenges") do%>
@@ -17,7 +22,7 @@
       <%if current_user.name == challenge.creator%>
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/images/challenge1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <h4><a href="/challenge/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
+        <h4><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
         <span class="w3-opacity"><%="#{challenge.groups.size} groups"%></span>
         <span class="w3-opacity" style="margin-right:5px;"><%="#{challenge.users.size} users"%></span>
         <hr class="w3-clear"> 
@@ -27,7 +32,7 @@
       <%else%>
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/images/challenge1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <h4><a href="/challenge/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
+        <h4><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
         <span class="w3-opacity"><%="#{challenge.groups.size} groups"%></span>
         <span class="w3-opacity" style="margin-right:5px;"><%="#{challenge.users.size} users"%></span>
         <hr class="w3-clear"> 
