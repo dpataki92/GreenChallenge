@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
 
   resources :challenges
+  # additional routes for ChallengesController
+    get "/challenges/sort/:value", to: "challenges#sort"
 
   # routes for SessionsController
     get "/", to: "sessions#home"

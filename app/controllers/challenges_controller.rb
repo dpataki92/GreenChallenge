@@ -36,6 +36,18 @@ class ChallengesController < ApplicationController
     def destroy
     end
 
+    def sort
+        if params[:value] == "creation"
+            @challenges = Challenge.order(created_at: :desc)
+        elsif params[:value] == "users"
+            @challenges = Challenge.all.sort {|a, b| b.users.size <=> a.users.size}
+        elsif params[:value] == "alphabet"
+            @challenges = Challenge.all.sort {|a, b| a.title <=> b.title}
+        end
+       
+        render :index
+    end
+
     private
 
     def challenge_params
