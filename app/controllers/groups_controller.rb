@@ -46,6 +46,21 @@ class GroupsController < ApplicationController
 
         render :index
     end
+
+    def commit_all
+        @group = Group.find_by(id: params[:id])
+
+        @group.challenges.each do |ch|
+            if !current_user.challenges.include?(ch)
+                if params[:value] == "daily"
+                    current_user.commitments.create(challenge: ch, regularity: "daily")
+                elsif params[:value] == "occasional"
+                    current_user.commitments.create(challenge: ch, regularity: "occasional")
+                end
+            end
+        end
+        redirect_to group_path(@group), notice "You have commited to all the challenges of this group!"
+    end
     
     private
 

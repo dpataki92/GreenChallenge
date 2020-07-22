@@ -14,7 +14,7 @@ Rails.application.routes.draw do
   resources :groups
   # additional routes for ChallengesController
   get "/groups/sort/:value", to: "groups#sort"
-
+  get "/groups/:id/commit_all/:value", to: "group#commit_all"
   # routes for SessionsController
     get "/", to: "sessions#home"
     get "/signup", to: "sessions#signup_page"

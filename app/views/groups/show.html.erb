@@ -14,7 +14,9 @@
         <hr class="w3-clear">
         
         <h6>The group has <%=@group.challenges.size%> recommended challenges.</h6>
-        <span><%=link_to "Commit to all group challenges","/groups", class:"link-to w3-opacity"%></span>
+        
+        <a href="/group/sort_challenges" class="link-to"><span class="w3-opacity" >Show only missing challenges</span></a>
+       
           <p>
             <%@challenges.each do |challenge|%>
             <% colors = ["d1", "d2", "d3", "d4", "d5", "l1", "l2","l3", "l4", "l5"] %>
@@ -22,4 +24,7 @@
               <span class="w3-tag w3-small w3-theme-<%=color%>"><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></a></span>
             <%end%>
           </p>
+          <button type="button"onclick="location.href='/groups/<%=@group.id%>/commit_all/daily'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to all as daily challenges</button>
+          <button type="button"onclick="location.href='/groups/<%=@group.id%>/commit_all/occasional'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to all as occasional challenges</button>
+
       </div>

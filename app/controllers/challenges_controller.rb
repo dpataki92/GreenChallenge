@@ -69,7 +69,9 @@ class ChallengesController < ApplicationController
     def commit
         @challenge = Challenge.find_by(id: params[:id])
 
-        current_user.commitments.create(challenge: @challenge, regularity: params[:regularity])
+        if !current_user.challenges.include?(@challenge)
+            current_user.commitments.create(challenge: @challenge, regularity: params[:regularity])
+        end
 
         redirect_to challenge_path(@challenge)
     end
