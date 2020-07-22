@@ -68,6 +68,15 @@ class GroupsController < ApplicationController
 
         render :show
     end
+
+    def forum
+        @group = Group.find_by(id: params[:id])
+        @forum = true
+        @posts = @group.posts
+        @challenges = @group.challenges
+        
+        render :show
+    end
     
     private
 

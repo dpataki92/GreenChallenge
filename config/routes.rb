@@ -17,6 +17,8 @@ Rails.application.routes.draw do
   get "/groups/sort/:value", to: "groups#sort"
   get "/groups/:id/commit_all/:value", to: "groups#commit_all"
   get "groups/:id/sort_challenges", to: "groups#sort_challenges"
+  get "groups/:id/forum", to: "groups#forum"
+
   # routes for SessionsController
     get "/", to: "sessions#home"
     get "/signup", to: "sessions#signup_page"
