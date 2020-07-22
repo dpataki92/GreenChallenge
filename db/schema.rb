@@ -40,6 +40,8 @@ ActiveRecord::Schema.define(version: 2020_07_12_153155) do
   create_table "groups", force: :cascade do |t|
     t.string "name"
     t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "memberships", force: :cascade do |t|

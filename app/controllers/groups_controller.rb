@@ -4,7 +4,7 @@ class GroupsController < ApplicationController
     layout "users"
 
     def index
-        @groups = Group.all
+        @groups = Group.order(created_at: :desc)
     end
 
     def show
@@ -17,6 +17,14 @@ class GroupsController < ApplicationController
     end
 
     def create
+        @group = Group.new(group_params)
+
+        if @group.save
+            redirect_to group_path(@group)
+        else
+            render :index
+        end
+
     end
 
     def update
@@ -25,6 +33,17 @@ class GroupsController < ApplicationController
     def destroy
     end
 
+    def sort
+        if params[:value] == "creation"
+            @groups = Group.order(created_at: :desc)
+        elsif params[:value] == "users"
+            @groups = Group.all.sort {|a, b| b.users.size <=> a.users.size}
+        elsif params[:value] == "alphabet"
+            @groups = Group.all.sort {|a, b| a.name <=> b.name}
+        end
+
+        render :index
+    end
     
     private
 

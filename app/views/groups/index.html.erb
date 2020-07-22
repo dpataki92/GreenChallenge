@@ -7,10 +7,10 @@
           <% end %>
         <% end %>
         <div class="w3-container w3-padding">
-            <h6 class="w3-opacity">Create your own group! Groups should be organized around a cross-cutting issue or geographical location</h6>
+            <h6 class="w3-opacity">Create your own group! Groups should be organized around a cross-cutting issue or geographical location.</h6>
             <%= form_tag("/groups") do%>
             <%= text_field_tag("group[name]", nil, placeholder: "Provide a name...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
-            <%= text_area_tag("group[description]", nil, placeholder: "What is the purpose of your group?", class:"textarea-group w3-opacity", required: true)%>
+            <%= text_area_tag("group[description]", nil, placeholder: "What is the purpose of your group?", class:"textarea-challenge w3-opacity", required: true)%>
             <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Create group</button> 
             <%end%>
         </div>
@@ -21,35 +21,50 @@
 <div class="w3-row-padding">
     <div class="w3-col m12">
         <div class="w3-card w3-round w3-white">
-        <div class="w3-container w3-padding sort-group">
+        <div class="w3-container w3-padding sort-challenge">
             <a href="/groups/sort/<%="creation"%>" class="link-to el-item"><span class="w3-opacity" >Most recent</span></a>
             <a href="/groups/sort/<%="users"%>" class="link-to el-item"><span class="w3-opacity" >Most popular</span></a>
             <a href="/groups/sort/<%="alphabet"%>" class="link-to el-item"><span class="w3-opacity" >Alphabetical</span></a>
-            <a href="/groups/sort/<%="me"%>" class="link-to el-item"><span class="w3-opacity" >My groups</span></a>
         </div>
         </div>
     </div>
 </div>
 
     <%@groups.each do |group|%>
-      <%if current_user.memberships.find {|m| m.group == group} %>
+      <%membership = current_user.memberships.find {|m| m.group == group}%>
+      <%if membership && membership.membership_type == "creator"%>
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/images/group1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <h4><a href="/groups/<%=group.id%>" class="link-to"><%=group.title%></h4><a><br>
-        <span class="w3-opacity"><%="#{group.groups.size} groups"%></span>
-        <span class="w3-opacity" style="margin-right:5px;"><%="#{group.users.size} users"%></span>
-        <hr class="w3-clear"> 
-        <button type="button"onclick="location.href='/groups/<%=group.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to group</button> 
+        <h4><a href="/groups/<%=group.id%>" class="link-to"><%=group.name%></h4><a><br>
+        <span class="w3-opacity"><%="#{group.users.size} users"%></span>
+        <span class="w3-right w3-opacity"><%=time_ago_in_words group.created_at%></span>
+        <hr class="w3-clear">
+        <p><%=group.description%></p>
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half">
+            </div>
+            <div class="w3-half">
+          </div>
+        </div>
+        <button type="button"onclick="location.href='/groups/<%=group.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Join group</button> 
         <button type="button"onclick="location.href='/groups/<%=group.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit group</button> 
       </div>
       <%else%>
       <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <img src="/images/group1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <h4><a href="/groups/<%=group.id%>" class="link-to"><%=group.title%></h4><a><br>
-        <span class="w3-opacity"><%="#{group.groups.size} groups"%></span>
-        <span class="w3-opacity" style="margin-right:5px;"><%="#{group.users.size} users"%></span>
+        <span class="w3-right w3-opacity"><%=time_ago_in_words group.created_at%></span>
+        <h4><a href="/groups/<%=group.id%>" class="link-to"><%=group.name%></h4><a><br>
+        <span class="w3-opacity"><%="#{group.users.size} users"%></span>
+        <hr class="w3-clear">
+        <p><%=group.description%></p>
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half">
+            </div>
+            <div class="w3-half">
+          </div>
+        </div>
         <hr class="w3-clear"> 
-        <button type="button"onclick="location.href='/groups/<%=group.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to group</button> 
+        <button type="button"onclick="location.href='/groups/<%=group.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Join group</button> 
       </div>
       <%end%>
       <%end%>

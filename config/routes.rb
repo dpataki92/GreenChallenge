@@ -12,6 +12,8 @@ Rails.application.routes.draw do
     get "/challenges/:id/uncommit", to: "challenges#uncommit"
 
   resources :groups
+  # additional routes for ChallengesController
+  get "/groups/sort/:value", to: "groups#sort"
 
   # routes for SessionsController
     get "/", to: "sessions#home"
