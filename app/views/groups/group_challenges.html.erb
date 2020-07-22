@@ -1,0 +1,10 @@
+<form method="post" action="/groups/<%=@group.id%>/add_challenges">      
+    <fieldset>      
+        <legend>Check the challenges you want to add</legend>
+        <%Challenge.all.each do |ch|%>
+            <input type="checkbox" name="group_challenge" value="<%=ch.title%>"><a href="/challenges/<%=ch.id%>"><%=ch.title%></a><br>      
+        <%end%>         
+        <br>      
+        <input type="submit" value="Add selected challenges" />      
+    </fieldset>      
+</form>

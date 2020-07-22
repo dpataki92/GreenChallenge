@@ -12,9 +12,6 @@ class GroupsController < ApplicationController
         @challenges = @group.challenges
     end
 
-    def new
-    end
-
     def edit
         @group = Group.find_by(id: params[:id])
     end
@@ -79,6 +76,13 @@ class GroupsController < ApplicationController
         @challenges = @group.challenges.select {|ch| !current_user.challenges.include?(ch)}
 
         render :show
+    end
+
+    def group_challenges
+        @group = Group.find_by(id: params[:id])
+    end
+
+    def add_challenges
     end
 
     def forum

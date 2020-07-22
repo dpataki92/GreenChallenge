@@ -9,7 +9,7 @@
         
         <h6>The group has <%=@group.challenges.size%> recommended challenges.</h6>
         <%if current_user.memberships.select {|m| m.membership_type == "creator"}.find {|m| m.group == @group}%>
-            <a href="/groups/<%=@group.id%>/add_challenges" class="link-to"><span class="w3-opacity" >Add challenges to group</span></a><br>
+            <a href="/groups/<%=@group.id%>/group_challenges" class="link-to"><span class="w3-opacity" >Add challenges to group</span></a><br>
         <%end%>
         <a href="/groups/<%=@group.id%>/sort_challenges" class="link-to"><span class="w3-opacity" >Show missing challenges only</span></a>
        
