@@ -1,0 +1,25 @@
+<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <img src="/images/group1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <span class="w3-right w3-opacity"><%=time_ago_in_words @group.created_at%></span>
+        <h4><a href="/groups/<%=@group.id%>" class="link-to"><%=@group.name%></h4><a><br>
+        <span class="w3-opacity"><%="#{@group.users.size} users"%></span>
+        <hr class="w3-clear">
+        <p><%=@group.description%></p>
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half">
+            </div>
+            <div class="w3-half">
+          </div>
+        </div>
+        <hr class="w3-clear">
+        
+        <h6>The group has <%=@group.challenges.size%> recommended challenges.</h6>
+        <span><%=link_to "Commit to all group challenges","/groups", class:"link-to w3-opacity"%></span>
+          <p>
+            <%@challenges.each do |challenge|%>
+            <% colors = ["d1", "d2", "d3", "d4", "d5", "l1", "l2","l3", "l4", "l5"] %>
+            <% color = colors[rand 0..(colors.size)]%>
+              <span class="w3-tag w3-small w3-theme-<%=color%>"><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></a></span>
+            <%end%>
+          </p>
+      </div>
