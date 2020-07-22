@@ -1,0 +1,15 @@
+
+<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+    <img src="<%="/images/challenge1.png"%>" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+    <span class="w3-right w3-opacity"><%=time_ago_in_words @group.created_at%></span>
+    <a href="/groups/<%=@group.id%>" class="link-to"><h4><%=@group.name%></h4></a><br>
+    <hr class="w3-clear">
+    <div class="w3-container w3-padding">
+            <%= form_tag("/groups/#{@group.id}", method: :patch) do %>
+            <%= text_field_tag("group[name]", @group.name, class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
+            <%= text_area_tag("group[description]", @group.description, class:"textarea-challenge w3-opacity", required: true)%>
+            <%= button_to 'Edit group', group_path(@group), method: :patch, class:"w3-button w3-theme-d1 w3-margin-bottom" %>
+            <%= button_to 'Delete group', "/groups/#{@group.id}", method: "delete", class:"w3-button w3-theme-d1 w3-margin-bottom"%>
+            <%end%>
+        </div>
+</div>

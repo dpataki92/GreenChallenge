@@ -16,6 +16,7 @@ class GroupsController < ApplicationController
     end
 
     def edit
+        @group = Group.find_by(id: params[:id])
     end
 
     def create
@@ -23,7 +24,6 @@ class GroupsController < ApplicationController
 
         if @group.save
             current_user.memberships.create(group: @group, membership_type: "creator")
-            binding.pry
             redirect_to group_path(@group)
         else
             render :index
@@ -32,9 +32,19 @@ class GroupsController < ApplicationController
     end
 
     def update
+        @group = Group.find_by(id: params[:id])
+
+        if @group.update(group_params)
+            redirect_to groups_path
+        else
+            redirect_to edit_group_path(@group), notice: "Sorry, invalid data."
+        end
     end
     
     def destroy
+        Group.find_by(id: params[:id]).destroy
+
+        redirect_to groups_path
     end
 
     def sort
