@@ -59,7 +59,14 @@ class GroupsController < ApplicationController
                 end
             end
         end
-        redirect_to group_path(@group), notice "You have commited to all the challenges of this group!"
+        redirect_to group_path(@group), notice: "You have commited to all the challenges of this group!"
+    end
+
+    def sort_challenges
+        @group = Group.find_by(id: params[:id])
+        @challenges = @group.challenges.select {|ch| !current_user.challenges.include?(ch)}
+
+        render :show
     end
     
     private

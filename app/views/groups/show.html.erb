@@ -15,7 +15,7 @@
         
         <h6>The group has <%=@group.challenges.size%> recommended challenges.</h6>
         
-        <a href="/group/sort_challenges" class="link-to"><span class="w3-opacity" >Show only missing challenges</span></a>
+        <a href="/groups/<%=@group.id%>/sort_challenges" class="link-to"><span class="w3-opacity" >Show only missing challenges</span></a>
        
           <p>
             <%@challenges.each do |challenge|%>

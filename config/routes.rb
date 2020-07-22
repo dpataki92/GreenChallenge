@@ -10,11 +10,13 @@ Rails.application.routes.draw do
     get "/challenges/sort/:value", to: "challenges#sort"
     get "/challenges/:id/commit/:regularity", to: "challenges#commit"
     get "/challenges/:id/uncommit", to: "challenges#uncommit"
+    
 
   resources :groups
   # additional routes for ChallengesController
   get "/groups/sort/:value", to: "groups#sort"
-  get "/groups/:id/commit_all/:value", to: "group#commit_all"
+  get "/groups/:id/commit_all/:value", to: "groups#commit_all"
+  get "groups/:id/sort_challenges", to: "groups#sort_challenges"
   # routes for SessionsController
     get "/", to: "sessions#home"
     get "/signup", to: "sessions#signup_page"
