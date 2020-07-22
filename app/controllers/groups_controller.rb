@@ -22,6 +22,8 @@ class GroupsController < ApplicationController
         @group = Group.new(group_params)
 
         if @group.save
+            current_user.memberships.create(group: @group, membership_type: "creator")
+            binding.pry
             redirect_to group_path(@group)
         else
             render :index
@@ -71,11 +73,16 @@ class GroupsController < ApplicationController
 
     def forum
         @group = Group.find_by(id: params[:id])
-        @forum = true
-        @posts = @group.posts
-        @challenges = @group.challenges
-        
-        render :show
+
+        if current_user.groups.include?(@group)
+            @forum = true
+            @posts = @group.posts
+            @challenges = @group.challenges
+
+            render :show
+        else
+            redirect_to group_path(@group), notice: "Only members can see the forum. Please join the group."
+        end
     end
     
     private
