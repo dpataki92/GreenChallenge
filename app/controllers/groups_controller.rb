@@ -84,10 +84,11 @@ class GroupsController < ApplicationController
 
     def add_challenges
         @group = Group.find_by(id: params[:id])
+        binding.pry
         @challenges = params[:group_challenges]
 
         @challenges.each do |c|
-            @group.challenges << c
+            @group.challenges << Challenge.find_by(title: c)
         end
 
         redirect_to group_path(@group)
