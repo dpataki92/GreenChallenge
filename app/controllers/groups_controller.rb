@@ -83,6 +83,14 @@ class GroupsController < ApplicationController
     end
 
     def add_challenges
+        @group = Group.find_by(id: params[:id])
+        @challenges = params[:group_challenges]
+
+        @challenges.each do |c|
+            @group.challenges << c
+        end
+
+        redirect_to group_path(@group)
     end
 
     def forum

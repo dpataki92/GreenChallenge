@@ -1,10 +1,8 @@
+<div class="w3-container w3-card w3-white w3-round w3-margin">
 <form method="post" action="/groups/<%=@group.id%>/add_challenges">      
-    <fieldset>      
-        <legend>Check the challenges you want to add</legend>
         <%Challenge.all.each do |ch|%>
-            <input type="checkbox" name="group_challenge" value="<%=ch.title%>"><a href="/challenges/<%=ch.id%>"><%=ch.title%></a><br>      
-        <%end%>         
-        <br>      
-        <input type="submit" value="Add selected challenges" />      
-    </fieldset>      
+            <label for="multiple"><input id="multiple" type="checkbox" name="group_challenges" value="<%=ch.title%>"><a href="/challenges/<%=ch.id%>"><%=ch.title%></a></label><br>    
+        <%end%>
+        <input type="submit" value="Add selected challenges" />          
 </form>
+</div>
