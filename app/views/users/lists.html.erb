@@ -1,12 +1,17 @@
 <%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
             
             <%= form_tag("/users/#{@user.id}/complete_list", method: :post) do%>
-            <%@commitments.all.each do |c|%>
-                <%if c.regularity == "daily"%>
+            <h6 class="w3-opacity">Your daily challenges for today:</h6>
+            <%@commitments.select {|commitment| commitment.regularity == "daily"}.each do |c|%>
                 <%=label_tag 'list[]', link_to(c.challenge.title, "/challenges/#{c.challenge.id}", class:"link-to", style:"position:relative; top:24px;")%>
                 <%=check_box_tag 'list[]', "#{c.challenge.title}"%>
-                <%end%>
             <%end%>
+            <h6 class="w3-opacity">Add occasional challenges you overcame today:</h6>
+            <select name="list[]" multiple>
+                <% @commitments.select {|commitment| commitment.regularity == "occasional"}.each do |c| %>
+                    <option value="<%= c.challenge.title %>"><%= c.challenge.title %></option>
+                <% end %>
+            </select>
             <br>
             <%=submit_tag "Submit list"%><br>
             <%end%>
