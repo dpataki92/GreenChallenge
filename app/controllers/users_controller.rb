@@ -22,6 +22,15 @@ class UsersController < ApplicationController
         @commitments = current_user.commitments
     end
 
+    def complete_list
+        
+        @list = List.create(title: "#{Date.today}", completed_challenges: params[:list], user: current_user)
+        @user = User.find_by(id: params[:id])
+        @commitments = current_user.commitments
+       
+        render :lists
+    end
+
     private
 
     def user_params
