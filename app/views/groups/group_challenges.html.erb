@@ -1,11 +1,12 @@
-<div class="w3-container w3-card w3-white w3-round w3-margin">
-<form method="post" action="/groups/<%=@group.id%>/edit_challenges">
-<%= hidden_field_tag "authenticity_token", form_authenticity_token %>
-
-        <%Challenge.all.each do |ch|%>
-            <label for="multiple"><input id="multiple" type="checkbox" name="group_challenges[]" value="<%=ch.title%>"><a href="/challenges/<%=ch.id%>"><%=ch.title%></a></label><br>    
-        <%end%>
-        <input type="submit" value="Add selected challenges" name="add" /><br>
-        <input type="submit" value="Remove selected challenges" name="remove" />        
-</form>
-</div>
+<%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
+            
+            <%= form_tag("/groups/#{@group.id}/edit_challenges", method: :post) do%>
+            <%Challenge.all.each do |ch|%>
+            <%=label_tag 'group_challenges[]', link_to(ch.title, "/challenges/#{ch.id}", class:"link-to", style:"position:relative; top:24px;")%>
+            <%=check_box_tag 'group_challenges[]', "#{ch.title}"%>
+            <%end%>
+            <br>
+            <%=submit_tag "Add selected challenges", name:"add"%><br>
+            <%=submit_tag "Remove selected challenges", name:"remove"%>
+            <%end%>
+<%end%>

@@ -8,9 +8,6 @@
         <hr class="w3-clear">
         
         <h6>The group has <%=@group.challenges.size%> recommended challenges.</h6>
-        <%if current_user.memberships.select {|m| m.membership_type == "creator"}.find {|m| m.group == @group}%>
-            <a href="/groups/<%=@group.id%>/group_challenges" class="link-to"><span class="w3-opacity" >Add challenges to group</span></a><br>
-        <%end%>
         <a href="/groups/<%=@group.id%>/sort_challenges" class="link-to"><span class="w3-opacity" >Show missing challenges only</span></a>
        
         <p>
@@ -31,8 +28,8 @@
         <%end%>
 
         <%if current_user.memberships.select {|m| m.membership_type == "creator"}.find {|m| m.group == @group}%>
-        <a href="/groups/<%=@group.id%>/edit" class="link-to"><span class="w3-opacity w3-right" >Edit group data</span></a>
-        <a href="/groups/<%=@group.id%>/group_challenges" class="link-to"><span class="w3-opacity w3-right" style="margin-right:5px;">Edit group challenges</span></a>
+        <a href="/groups/<%=@group.id%>/edit"><span class="w3-opacity w3-right link-to" >Edit group data</span></a>
+        <a href="/groups/<%=@group.id%>/group_challenges"><span class="w3-opacity w3-right link-to" style="margin-right:5px;">Edit group challenges</span></a>
         <%elsif current_user.groups.include?(@group)%>
         <a href="/groups/<%=@group.id%>/leave" class="link-to" onclick="return confirm('Are you sure you want to leave the group?');"><span class="w3-opacity w3-right" >Leave the group</span></a><br><br>
         <%end%>
