@@ -138,6 +138,16 @@ class GroupsController < ApplicationController
 
         redirect_to groups_path, notice: "You have successfully left the group!"
     end
+
+    def uncommit_all
+        @group = Group.find_by(id: params[:id])
+        
+        @group.challenges.each do |c|
+            current_user.challenges.delete(c)
+        end
+
+        redirect_to group_path(@group)
+    end
     
     private
 

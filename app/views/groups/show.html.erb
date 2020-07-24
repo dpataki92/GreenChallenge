@@ -17,8 +17,12 @@
             <span class="w3-tag w3-small w3-theme-<%=color%>"><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></a></span>
         <%end%>
         </p>
+        <%if @group.challenges.all? {|c| current_user.challenges.include?(c)}%>
+        <button type="button"onclick="location.href='/groups/<%=@group.id%>/uncommit_all'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-close"></i> Remove group challenges from my challenges</button>
+        <%else%>
         <button type="button"onclick="location.href='/groups/<%=@group.id%>/commit_all/daily'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to all as daily challenges</button>
         <button type="button"onclick="location.href='/groups/<%=@group.id%>/commit_all/occasional'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to all as occasional challenges</button>
+        <%end%>
         <hr class="w3-clear">
 
         <%if current_user.groups.include?(@group)%>
