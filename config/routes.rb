@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   # additional routes for UsersController
   get "/users/:id/lists", to: "users#lists"
+  post "/users/:id/complete_list", to: "users#complete_list"
 
   resources :challenges
   # additional routes for ChallengesController

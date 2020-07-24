@@ -2,7 +2,7 @@ class UsersController < ApplicationController
     include UserHelper
     
     layout "users"
-    
+
     def show
         @user = User.find_by(id: session[:user_id])
     end
@@ -18,6 +18,7 @@ class UsersController < ApplicationController
     end
 
     def lists
+        @user = User.find_by(id: params[:id])
         @commitments = current_user.commitments
     end
 

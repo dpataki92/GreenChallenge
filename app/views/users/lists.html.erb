@@ -1,11 +1,30 @@
-<div class="w3-container w3-card w3-white w3-round w3-margin">
-<form method="post" action="/groups/<%=@group.id%>/complete_list">
-<%= hidden_field_tag "authenticity_token", form_authenticity_token %>
+<%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
+            
+            <%= form_tag("/users/#{@user.id}/complete_list", method: :post) do%>
+            <%@commitments.all.each do |ch|%>
+            <%=label_tag 'group_challenges[]', link_to(c.title, "/challenges/#{ch.id}", class:"link-to", style:"position:relative; top:24px;")%>
+            <%=check_box_tag 'group_challenges[]', "#{ch.title}"%>
+            <%end%>
+            <br>
+            <%=submit_tag "Add selected challenges", name:"add"%><br>
+            <%=submit_tag "Remove selected challenges", name:"remove"%>
+            <%end%>
+<%end%>
 
-        <%Challenge.all.each do |ch|%>
-            <label for="multiple"><input id="multiple" type="checkbox" name="group_challenges[]" value="<%=ch.title%>"><a href="/challenges/<%=ch.id%>"><%=ch.title%></a></label><br>    
-        <%end%>
-        <input type="submit" value="Add selected challenges" name="add" /><br>
-        <input type="submit" value="Remove selected challenges" name="remove" />        
-</form>
-</div>
+<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <img src="/images/list1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <h4><%=post.user.name%></h4><br>
+        <hr class="w3-clear">
+        <span class="w3-opacity"><a href="/groups/<%=post.group.id%>" class="link-to"><%=post.group.name%></a></span>
+        <p><%=post.content%></p>
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half">
+            </div>
+            <div class="w3-half">
+          </div>
+        </div>
+        <button type="button"onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>/like'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button" onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>'" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+        <span class="w3-right w3-opacity"><%=post.likes.to_s + " likes"%></span> 
+        <span class="w3-right w3-opacity" style="margin-right:5px;"><a href="/users/<%=post.user.id%>/posts/<%=post.id%>" class="link-to"><%=post.comments.size.to_s + " comments"%></a></span>
+      </div>
