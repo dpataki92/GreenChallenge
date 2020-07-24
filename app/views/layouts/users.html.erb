@@ -78,7 +78,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     <div class="w3-col m7">
     <% flash.each do |type, msg| %>
       <div>
-        <%= msg %>
+        <span class="w3-opacity"><%= msg %></span>
       </div>
     <% end %>
     

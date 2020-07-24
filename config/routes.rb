@@ -16,10 +16,12 @@ Rails.application.routes.draw do
   # additional routes for ChallengesController
   get "/groups/sort/:value", to: "groups#sort"
   get "/groups/:id/commit_all/:value", to: "groups#commit_all"
-  get "groups/:id/sort_challenges", to: "groups#sort_challenges"
-  get "groups/:id/forum", to: "groups#forum"
-  get "groups/:id/group_challenges", to: "groups#group_challenges"
-  post "groups/:id/add_challenges", to: "groups#add_challenges"
+  get "/groups/:id/sort_challenges", to: "groups#sort_challenges"
+  get "/groups/:id/forum", to: "groups#forum"
+  get "/groups/:id/group_challenges", to: "groups#group_challenges"
+  post "/groups/:id/edit_challenges", to: "groups#edit_challenges"
+  get "groups/:id/join", to: 'groups#join'
+  get "/groups/:id/leave", to: "groups#leave"
 
 
   # routes for SessionsController

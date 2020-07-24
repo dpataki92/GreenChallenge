@@ -8,7 +8,7 @@
             <%= form_tag("/groups/#{@group.id}", method: :patch) do %>
             <%= text_field_tag("group[name]", @group.name, class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
             <%= text_area_tag("group[description]", @group.description, class:"textarea-challenge w3-opacity", required: true)%>
-            <%= button_to 'Edit group', group_path(@group), method: :patch, class:"w3-button w3-theme-d1 w3-margin-bottom" %>
+            <%= button_to 'Edit data', group_path(@group), method: :patch, class:"w3-button w3-theme-d1 w3-margin-bottom" %>
             <%= button_to 'Delete group', "/groups/#{@group.id}", method: "delete", class:"w3-button w3-theme-d1 w3-margin-bottom"%>
             <%end%>
         </div>

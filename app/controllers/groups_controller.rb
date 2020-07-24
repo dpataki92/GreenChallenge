@@ -82,13 +82,24 @@ class GroupsController < ApplicationController
         @group = Group.find_by(id: params[:id])
     end
 
-    def add_challenges
+    def edit_challenges
+       
         @group = Group.find_by(id: params[:id])
-        binding.pry
         @challenges = params[:group_challenges]
 
-        @challenges.each do |c|
-            @group.challenges << Challenge.find_by(title: c)
+        if params[:add]
+            @challenges.each do |c|
+                if !@group.challenges.include?(Challenge.find_by(title: c))
+                    @group.challenges << Challenge.find_by(title: c)
+                    @group.save
+                end
+            end
+        elsif params[:remove]
+            @challenges.each do |c|
+                if @group.challenges.include?(Challenge.find_by(title: c))
+                    @group.challenges.delete(Challenge.find_by(title: c))
+                end
+            end
         end
 
         redirect_to group_path(@group)
@@ -106,6 +117,26 @@ class GroupsController < ApplicationController
         else
             redirect_to group_path(@group), notice: "Only members can see the forum. Please join the group."
         end
+    end
+
+    def join
+        @group = Group.find_by(id: params[:id])
+
+        if !current_user.groups.include?(@group)
+            current_user.groups << @group
+            current_user.save
+        end
+
+        redirect_to group_path(@group), notice: "You have successfully joined the group!"
+    end
+    
+    def leave
+        @group = Group.find_by(id: params[:id])
+        if current_user.groups.include?(@group)
+            current_user.groups.delete(@group)
+        end
+
+        redirect_to groups_path, notice: "You have successfully left the group!"
     end
     
     private
