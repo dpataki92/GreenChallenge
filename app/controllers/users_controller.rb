@@ -32,6 +32,8 @@ class UsersController < ApplicationController
             @list = List.create(title: "#{Date.today}", completed_challenges: params[:list], user: current_user)
             @user = User.find_by(id: params[:id])
             @user.lists << @list
+            @user.points += @list.completed_challenges.size
+            @user.save
             @commitments = current_user.commitments
             
             render :lists
@@ -41,14 +43,16 @@ class UsersController < ApplicationController
     def clear_lists
         @user = User.find_by(id: params[:id])
         @user.lists.delete_all
-
+        
         redirect_to "/users/#{@user.id}/lists"
     end
 
     def undo_lists
         @user = User.find_by(id: params[:id])
+        @user.points -= @user.lists.last.completed_challenges.size
         @user.lists.last.delete
-
+        @user.save
+        
         redirect_to "/users/#{@user.id}/lists"
     end
 
