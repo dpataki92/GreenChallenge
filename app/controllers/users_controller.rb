@@ -43,9 +43,9 @@ class UsersController < ApplicationController
         redirect_to "/users/#{@user.id}/lists"
     end
 
-    def undo_list
+    def undo_lists
         @user = User.find_by(id: params[:id])
-        @user.lists.last.delete_all
+        @user.lists.last.delete
 
         redirect_to "/users/#{@user.id}/lists"
     end
