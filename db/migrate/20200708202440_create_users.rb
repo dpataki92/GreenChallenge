@@ -7,6 +7,8 @@ class CreateUsers < ActiveRecord::Migration[6.0]
       t.string :country, default: ""
       t.integer :points, default: 0
       t.string :avatar, default: "/images/avatar7.jpg"
+
+      t.timestamps
     end
   end
 end

@@ -23,6 +23,30 @@ module UserHelper
         likes
     end
 
-   
+    def avg_point
+        diff = (DateTime.now.utc - current_user.created_at).floor
 
-end
+        if diff == 0
+           current_user.points
+        else
+            (current_user.points / diff).round
+        end
+
+    end
+
+    def performance
+        if current_user.goal.nil?
+            "You have not set a goal yet."
+        else
+            diff = avg_point.to_f / current_user.goal.to_f
+            if diff > 1.0
+                "+#{(diff - 1.0) * 100}%"
+            elsif diff < 1.0
+                "-#{(1.0 - diff) * 100}%"
+            else
+                "100%"
+            end
+        end
+    end
+
+end 

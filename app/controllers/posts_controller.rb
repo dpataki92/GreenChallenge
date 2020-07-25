@@ -27,7 +27,9 @@ class PostsController < ApplicationController
         @post = @user.posts.find_by(id: params[:id])
         @post.likes += 1
         @post.save
-
+        @user.points += 1
+        @user.save
+        
         redirect_to user_post_path(@post)
     end
 

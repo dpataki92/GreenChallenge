@@ -93,12 +93,8 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
         <div class="w3-container">
           <p><strong>Total points:</strong></p>
             <%=current_user.points%>
-          <p><strong>Average weekly point goal:</strong></p>
-            <%if current_user.goal%>
-            <%=current_user.goal%>
-            <%else%>
-            <%="You have not set a weekly goal."%>
-            <%end%>
+          <p><strong>Total posts:</strong></p>
+            <%=current_user.posts.size%>
           <p><strong>Total commitments:</strong></p>
             <%=current_user.commitments.size%>
           <p><button onclick="location.href='/users/<%=current_user.id%>/report'" class="w3-button w3-block w3-theme-l4">Generate Report</button></p>
