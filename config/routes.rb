@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # additional routes for UsersController
   get "/users/:id/lists", to: "users#lists"
   post "/users/:id/complete_list", to: "users#complete_list"
+  get "/users/:id/clear_lists", to: "users#clear_lists"
+  get "/users/:id/undo_list", to: "users#undo_lists"
+
 
   resources :challenges
   # additional routes for ChallengesController

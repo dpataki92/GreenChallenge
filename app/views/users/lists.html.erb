@@ -1,16 +1,17 @@
 <%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
             
             <%= form_tag("/users/#{@user.id}/complete_list", method: :post) do%>
-            <h6 class="w3-opacity">Your daily challenges for today:</h6>
+            <h6 class="w3-opacity">Daily challenges:</h6>
             <%@commitments.select {|commitment| commitment.regularity == "daily"}.each do |c|%>
                 <%=label_tag 'list[]', link_to(c.challenge.title, "/challenges/#{c.challenge.id}", class:"link-to", style:"position:relative; top:24px;")%>
                 <%=check_box_tag 'list[]', "#{c.challenge.title}"%>
             <%end%>
-            <h6 class="w3-opacity">Add occasional challenges you overcame today:</h6>
-            <select name="list[]" multiple>
+            <h6 class="w3-opacity">Add occasional challenges:</h6><br>
+            <select name="list[]" multiple >
                 <% @commitments.select {|commitment| commitment.regularity == "occasional"}.each do |c| %>
                     <option value="<%= c.challenge.title %>"><%= c.challenge.title %></option>
                 <% end %>
+                
             </select>
             <br>
             <%=submit_tag "Submit list"%><br>
@@ -19,14 +20,19 @@
 
 <%if !@user.lists.empty?%>
 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <%@user.lists.each do |list|%>
+        <%@user.lists.order(created_at: :desc).each do |list|%>
         <img src="/images/list2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
         <h4><%=list.title%></h4><br>
         <hr class="w3-clear">
-        <%@list.completed_challenges.each do |ch|%>
+        <%list.completed_challenges.each do |ch|%>
         <span class="w3-opacity"><%=ch%></span><br>
         <%end%>
-        <p>You collected <%=@list.completed_challenges.size%> points this day!</p>
+        <p>You collected <%=list.completed_challenges.size%> points this day!</p>
+        <%if list.title == Date.today.strftime("%Y-%m-%d")%>
+            <a href="/users/<%=@user.id%>/undo_list" class="link-to"><span class="w3-opacity" >Undo list</span></a>
         <%end%>
+        <%end%>
+<hr class="w3-clear">
+<a href="/users/<%=@user.id%>/clear_lists" class="link-to"><span class="w3-opacity" >Clear lists</span></a>
 </div>
 <%end%>

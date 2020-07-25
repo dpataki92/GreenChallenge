@@ -24,11 +24,30 @@ class UsersController < ApplicationController
 
     def complete_list
         
-        @list = List.create(title: "#{Date.today}", completed_challenges: params[:list], user: current_user)
-        @user = User.find_by(id: params[:id])
-        @commitments = current_user.commitments
+        if current_user.lists.last && Date.today.strftime("%Y-%m-%d") == current_user.lists.last.title
+            redirect_to "/users/#{current_user.id}/lists", notice: "You have already completed a to-do list for today!"
+        else
+            @list = List.create(title: "#{Date.today}", completed_challenges: params[:list], user: current_user)
+            @user = User.find_by(id: params[:id])
+            @user.lists << @list
+            @commitments = current_user.commitments
        
-        render :lists
+            render :lists
+        end
+    end
+
+    def clear_lists
+        @user = User.find_by(id: params[:id])
+        @user.lists.delete_all
+
+        redirect_to "/users/#{@user.id}/lists"
+    end
+
+    def undo_list
+        @user = User.find_by(id: params[:id])
+        @user.lists.last.delete_all
+
+        redirect_to "/users/#{@user.id}/lists"
     end
 
     private
