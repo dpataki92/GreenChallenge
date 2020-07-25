@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_24_173010) do
+ActiveRecord::Schema.define(version: 2020_07_25_165420) do
 
   create_table "challenges", force: :cascade do |t|
     t.string "title"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_07_24_173010) do
     t.integer "points", default: 0
     t.string "avatar", default: "/images/avatar7.jpg"
     t.string "uid"
+    t.integer "goal"
   end
 
 end

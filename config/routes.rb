@@ -6,12 +6,13 @@ Rails.application.routes.draw do
     get "/posts/:id/like", to: "posts#post_like"
     post "/posts/:id/comment", to: "posts#post_comment"
   end
+
   # additional routes for UsersController
   get "/users/:id/lists", to: "users#lists"
   post "/users/:id/complete_list", to: "users#complete_list"
   get "/users/:id/clear_lists", to: "users#clear_lists"
   get "/users/:id/undo_list", to: "users#undo_lists"
-
+  get "/users/:id/report", to: "users#report"
 
   resources :challenges
   # additional routes for ChallengesController

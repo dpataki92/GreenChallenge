@@ -7,4 +7,22 @@ module UserHelper
         User.find_by(id: session[:user_id])
     end
 
+    def num_of_challenges(regularity)
+        if regularity == "daily"
+            current_user.commitments.select {|c| c.challenge == "daily"}.size
+        elsif regularity == "occasional"
+            current_user.commitments.select {|c| c.challenge == "occasional"}.size
+        end
+    end
+
+    def num_of_likes
+        likes = 0
+        current_user.posts.each do |p|
+            likes += p.likes
+        end
+        likes
+    end
+
+   
+
 end

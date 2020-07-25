@@ -52,10 +52,13 @@ class UsersController < ApplicationController
         redirect_to "/users/#{@user.id}/lists"
     end
 
+    def report
+    end
+
     private
 
     def user_params
-        params.require(:user).permit(:name, :email, :password, :country, :avatar)
+        params.require(:user).permit(:name, :email, :password, :country, :avatar, :goal)
     end
 
 end

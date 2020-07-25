@@ -1,0 +1,13 @@
+<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <img src="/images/report1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <span class="w3-right w3-opacity"><%=Date.today%></span>
+        <h4><%=current_user.name%></h4><br>
+        <hr class="w3-clear">
+        <strong>Total points: </strong><%=current_user.points%><br>
+        <strong>Total commitments: </strong><%=current_user.commitments.size%><br>
+        <strong>Number of daily challenges: </strong><%=num_of_challenges("daily")%><br>
+        <strong>Number of occasional challenges: </strong><%=num_of_challenges("occasional")%><br>
+        <strong>Number of posts shared: </strong><%=current_user.posts.size%><br>
+        <strong>Number of likes for posts: </strong><%=num_of_likes%><br>
+      
+      </div>

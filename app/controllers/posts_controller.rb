@@ -31,7 +31,7 @@ class PostsController < ApplicationController
         redirect_to user_post_path(@post)
     end
 
-    def post_commen
+    def post_comment
         @post = Post.find_by(id: params[:id])
         @comment = @post.comments.create(comment_params)
         @post.save
