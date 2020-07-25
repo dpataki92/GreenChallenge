@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root "sessions#home"
 
-  resources :users, only: [:show, :edit, :update]
+  resources :users, only: [:show, :edit, :update] do
+    resources :posts, only: [:show, :edit, :create, :update]
+  end
   # additional routes for UsersController
   get "/users/:id/lists", to: "users#lists"
   post "/users/:id/complete_list", to: "users#complete_list"
