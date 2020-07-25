@@ -17,13 +17,17 @@
 </head>
 
 <%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
+            <br>
+            <img src="/images/list3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+            <h4>Your challenges for <%=Date.today.strftime("%Y-%m-%d")%></h4><br>
+            <hr class="w3-clear">
             
             <%= form_tag("/users/#{@user.id}/complete_list", method: :post) do%>
             <label style="position:relative; left:12px;">Daily challenges</label><br>
             <%@commitments.select {|commitment| commitment.regularity == "daily"}.each do |c|%>
                 <%=label_tag 'list[]', link_to(c.challenge.title, "/challenges/#{c.challenge.id}", class:"link-to", style:"position:relative; top:24px; left:12px;")%>
                 <%=check_box_tag 'list[]', "#{c.challenge.title}"%>
-            <%end%><br>
+            <%end%><br><br>
 
             <div class="form-group col-md-6 col-lg-6 col-sm-6">
             <label>Add occasional challenges</label>
