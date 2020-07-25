@@ -1,2 +1,33 @@
-<%=@post.title%><br>
-<%=@post.content%>
+<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+        <img src="<%=@post.user.avatar%>" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <span class="w3-right w3-opacity"><%=time_ago_in_words @post.created_at%></span>
+        <h4><%=@post.user.name%></h4><br>
+        <hr class="w3-clear">
+        <span class="w3-opacity"><a href="/groups/<%=@post.group.id%>" class="link-to"><%=@post.group.name%></a></span>
+        <p><strong><%=@post.title%></strong></p>
+        <p><%=@post.content%></p>
+          <div class="w3-row-padding" style="margin:0 -16px">
+            <div class="w3-half">
+            </div>
+            <div class="w3-half">
+          </div>
+        </div>
+        <button type="button"onclick="location.href='/users/<%=@post.user.id%>/posts/<%=@post.id%>/like'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <span class="w3-right w3-opacity"><%=@post.likes.to_s + " likes"%></span> 
+        <span class="w3-right w3-opacity" style="margin-right:5px;"><%=@post.comments.size.to_s + " comments"%></span>
+      </div>
+
+      <div class="w3-container w3-card w3-white w3-round w3-margin">
+            <h6 class="w3-opacity">Create a comment:</h6>
+            <%= form_tag("/users/#{@post.user.id}/posts/#{@post.id}/comment") do%>
+            <%= text_area_tag("comment[content]", nil, placeholder: "Type your comment here...", class:"textarea-challenge w3-opacity", required: true)%>
+            <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Submit</button> 
+            <%end%>
+            <hr class="w3-clear">
+            <%@post.comments.order(created_at: :desc).each do |comment|%>
+                <h6><strong><%=comment.user.name%></strong></h6>
+                <p><%=comment.content%></p><br>
+                <span class="w3-opacity"><%=time_ago_in_words comment.created_at%></span>
+                <hr class="w3-clear">
+            <%end%>
+        </div>
