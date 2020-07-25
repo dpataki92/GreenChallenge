@@ -1,18 +1,38 @@
+<head>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/js/bootstrap-select.min.js"></script>
+<style>
+    i, span a {
+        color: white;
+    }
+
+    label a {
+        color: green;
+    }
+
+</style>
+</head>
+
 <%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
             
             <%= form_tag("/users/#{@user.id}/complete_list", method: :post) do%>
-            <h6 class="w3-opacity">Daily challenges:</h6>
+            <label style="position:relative; left:12px;">Daily challenges</label><br>
             <%@commitments.select {|commitment| commitment.regularity == "daily"}.each do |c|%>
-                <%=label_tag 'list[]', link_to(c.challenge.title, "/challenges/#{c.challenge.id}", class:"link-to", style:"position:relative; top:24px;")%>
+                <%=label_tag 'list[]', link_to(c.challenge.title, "/challenges/#{c.challenge.id}", class:"link-to", style:"position:relative; top:24px; left:12px;")%>
                 <%=check_box_tag 'list[]', "#{c.challenge.title}"%>
-            <%end%>
-            <h6 class="w3-opacity">Add occasional challenges:</h6><br>
-            <select name="list[]" multiple >
-                <% @commitments.select {|commitment| commitment.regularity == "occasional"}.each do |c| %>
-                    <option value="<%= c.challenge.title %>"><%= c.challenge.title %></option>
-                <% end %>
-                
-            </select>
+            <%end%><br>
+
+            <div class="form-group col-md-6 col-lg-6 col-sm-6">
+            <label>Add occasional challenges</label>
+            <select id="DDLActivites" data-style="btn-default" class="selectpicker form-control" multiple data-max-options="50" name="list[]">
+                    <% @commitments.select {|commitment| commitment.regularity == "occasional"}.each do |c| %>
+                        <option value="<%= c.challenge.title %>"><%= c.challenge.title %></option>
+                    <% end %>
+                </select>
+            </div>
             <br>
             <%=submit_tag "Submit list"%><br>
             <%end%>
