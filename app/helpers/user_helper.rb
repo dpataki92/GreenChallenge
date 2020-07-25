@@ -9,9 +9,9 @@ module UserHelper
 
     def num_of_challenges(regularity)
         if regularity == "daily"
-            current_user.commitments.select {|c| c.challenge == "daily"}.size
+            current_user.commitments.select {|c| c.regularity == "daily"}.size
         elsif regularity == "occasional"
-            current_user.commitments.select {|c| c.challenge == "occasional"}.size
+            current_user.commitments.select {|c| c.regularity == "occasional"}.size
         end
     end
 
@@ -24,7 +24,7 @@ module UserHelper
     end
 
     def avg_point
-        diff = (DateTime.now.utc - current_user.created_at).floor
+        diff = ((DateTime.now.utc - current_user.created_at)/86400).floor
 
         if diff == 0
            current_user.points
@@ -38,11 +38,11 @@ module UserHelper
         if current_user.goal.nil?
             "You have not set a goal yet."
         else
-            diff = avg_point.to_f / current_user.goal.to_f
+            diff = (avg_point.to_f / current_user.goal.to_f)
             if diff > 1.0
-                "+#{(diff - 1.0) * 100}%"
+                "+#{((diff - 1.0) * 100).round(2)}%"
             elsif diff < 1.0
-                "-#{(1.0 - diff) * 100}%"
+                "-#{((1.0 - diff) * 100).round(2)}%"
             else
                 "100%"
             end
