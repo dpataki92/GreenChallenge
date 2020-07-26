@@ -7,13 +7,21 @@ class GroupsController < ApplicationController
         @groups = Group.recent
     end
 
+    # rendering individual group show page with forum
     def show
         @group = Group.find_by(id: params[:id])
         @challenges = @group.challenges
     end
 
+    # rendering edit group page if user created the group
     def edit
         @group = Group.find_by(id: params[:id])
+
+        if current_user.memberships.created.find {|m| m.group == @group}
+            render :edit
+        else
+            redirect_to group_path(@group)
+        end
     end
 
     def create

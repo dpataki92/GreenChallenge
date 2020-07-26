@@ -29,4 +29,5 @@ class ApplicationController < ActionController::Base
             @groups = Group.all.sort {|a, b| a.name <=> b.name}
         end
     end
+
 end
