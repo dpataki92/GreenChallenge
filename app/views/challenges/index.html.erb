@@ -1,3 +1,4 @@
+<!-- rendering form for creating new challenge -->
 <div class="w3-row-padding">
     <div class="w3-col m12">
         <div class="w3-card w3-round w3-white">
@@ -18,6 +19,7 @@
     </div>
 </div><br>
 
+<!-- rendering links for sorting challenges based on different conditions -->
 <div class="w3-row-padding">
     <div class="w3-col m12">
         <div class="w3-card w3-round w3-white">
@@ -31,25 +33,26 @@
     </div>
 </div>
 
-    <%@challenges.each do |challenge|%>
-      <%if current_user.name == challenge.creator%>
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="/images/challenge1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <h4><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
-        <span class="w3-opacity"><%="#{challenge.groups.size} groups"%></span>
-        <span class="w3-opacity" style="margin-right:5px;"><%="#{challenge.users.size} users"%></span>
-        <hr class="w3-clear"> 
-        <button type="button"onclick="location.href='/challenges/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to challenge</button> 
-        <button type="button"onclick="location.href='/challenges/<%=challenge.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit challenge</button> 
-      </div>
-      <%else%>
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <img src="/images/challenge1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <h4><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
-        <span class="w3-opacity"><%="#{challenge.groups.size} groups"%></span>
-        <span class="w3-opacity" style="margin-right:5px;"><%="#{challenge.users.size} users"%></span>
-        <hr class="w3-clear"> 
-        <button type="button"onclick="location.href='/challenges/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to challenge</button> 
-      </div>
-      <%end%>
-      <%end%>
+<!-- displaying all challenges in descending order -->
+<%@challenges.each do |challenge|%>
+  <%if current_user.name == challenge.creator%>
+    <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+      <img src="/images/challenge1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+      <h4><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
+      <span class="w3-opacity"><%="#{challenge.groups.size} groups"%></span>
+      <span class="w3-opacity" style="margin-right:5px;"><%="#{challenge.users.size} users"%></span>
+      <hr class="w3-clear"> 
+      <button type="button"onclick="location.href='/challenges/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to challenge</button> 
+      <button type="button"onclick="location.href='/challenges/<%=challenge.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit challenge</button> 
+    </div>
+  <%else%>
+    <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+      <img src="/images/challenge1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+      <h4><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></h4><a><br>
+      <span class="w3-opacity"><%="#{challenge.groups.size} groups"%></span>
+      <span class="w3-opacity" style="margin-right:5px;"><%="#{challenge.users.size} users"%></span>
+      <hr class="w3-clear"> 
+      <button type="button"onclick="location.href='/challenges/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to challenge</button> 
+    </div>
+  <%end%>
+  <%end%>

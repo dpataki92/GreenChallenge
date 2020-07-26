@@ -1,27 +1,38 @@
 class ChallengesController < ApplicationController
-    
     include UserHelper
-    
     layout "users"
 
+    # rendering page with all challenges and sorting links
     def index
-        @challenges = Challenge.order(created_at: :desc)
-    end
-
-    def show
-        @challenge = Challenge.find_by(id: params[:id])
-    end
-
-    def new
-    end
-
-    def edit
-        @challenge = Challenge.find_by(id: params[:id])
-        
-        if @challenge.creator == current_user.name
-            render :edit
+        if logged_in?
+            @challenges = Challenge.recent
+            render :index
         else
-            redirect_to challenges_path
+            redirect_to "/"
+        end
+    end
+
+    # rendering show page for individual challenge
+    def show
+        if logged_in?
+            @challenge = Challenge.find_by(id: params[:id])
+            render :show
+        else
+            redirect_to "/"
+        end
+    end
+
+    # rendering edit page if challenge belongs to current user
+    def edit
+        if logged_in?
+            @challenge = Challenge.find_by(id: params[:id])
+            if @challenge.creator == current_user.name
+                render :edit
+            else
+                redirect_to challenges_path
+            end
+        else
+            redirect_to "/"
         end
     end
 
