@@ -116,7 +116,7 @@ label {
 /* bottom container */
 .bottom-container {
   text-align: center;
-  background-color: gray;
+  background-color: white;
   border-radius: 0px 0px 4px 4px;
 }
 
@@ -140,12 +140,9 @@ label {
 
 /* BASIC */
 
-html {
-  background-color: lightgreen;
-}
 
 body {
-  font-family: "Poppins", sans-serif;
+  
   height: 100vh;
 }
 
@@ -160,6 +157,8 @@ body {
   width: 100%;
   min-height: 100%;
   padding: 20px;
+  background-color: #77cc6d;
+  font-family: 'Raleway Dots', sans-serif;
 }
 
 #formContent {
@@ -188,4 +187,11 @@ body {
 
 * {
   box-sizing: border-box;
+}
+
+.globe-center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
 }

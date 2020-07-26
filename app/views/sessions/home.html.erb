@@ -7,7 +7,7 @@
     <%= form_tag("/login") do%>
         
         <%= content_tag(:div, class: "row") do %>
-          <%= content_tag(:h2, style: "text-align:center", class:"w3-opacity") do %>
+          <%= content_tag(:h2, style: "text-align:center; font-weight: bold; color:green;", class:"w3-opacity") do %>
             Welcome to GreenChallenge!
           <%end%>
           <%= content_tag(:h4, style: "text-align:center", class:"w3-opacity") do %>
@@ -38,7 +38,7 @@
 
     <%= content_tag(:div, class: "bottom-container") do %>
       <%= content_tag(:div, class: "row w3-opacity") do %>
-        <%= link_to "Sign up", "/signup", style: "color:white;", class: "btn" %>
+        <%= link_to "Sign up", "/signup", style: "color:green; font-weight:bold;", class: "btn" %>
       <%end%>
     <%end%>
 

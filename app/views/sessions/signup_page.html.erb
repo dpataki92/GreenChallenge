@@ -1,7 +1,8 @@
-
-        <%= content_tag(:div, id: "signup") do%>
-            
-            <%= form_tag("/signup") do%>
+<div class="wrapper fadeInDown">
+  <div id="formContent">
+    <img src="/images/globe.png" alt="Avatar" class="globe-center w3-opacity" style="width:40px">
+    <!-- Login Form -->
+        <%= form_tag("/signup") do%>
             <%= text_field_tag("user[name]", nil, placeholder: "Name", required: true)%>
             <%= text_field_tag("user[email]", nil, placeholder: "Email", required: true)%>
             <%= password_field_tag("user[password]", nil, placeholder: "Password", required: true)%>
@@ -254,7 +255,19 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
             </datalist>
-                
-            <%= submit_tag "Sign up"%>
+            <%= submit_tag "Sign up", style:"color:green; font-weight:bold; background-color:white;"%>
             <%end%>
-        <%end%>
+
+    <!-- Remind Passowrd -->
+  
+
+  </div>
+</div>
+
+
+    
+
+
+
+
+
