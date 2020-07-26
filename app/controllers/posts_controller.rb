@@ -25,7 +25,7 @@ class PostsController < ApplicationController
         @post = Post.find_by(id: params[:id])
 
         @post.update(post_params)
-        binding.pry
+     
         redirect_to user_post_path(@post)
     end
 

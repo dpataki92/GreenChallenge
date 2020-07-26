@@ -71,8 +71,12 @@
             <div class="w3-half">
           </div>
         </div>
+        <%if !current_user.posts.include?(post)%>    
         <button type="button"onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>/like'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
         <button type="button" onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>'" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+        <%else%>
+        <button type="button"onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit post</button> 
+        <%end%>
         <span class="w3-right w3-opacity"><%=post.likes.to_s + " likes"%></span> 
         <span class="w3-right w3-opacity" style="margin-right:5px;"><a href="/users/<%=post.user.id%>/posts/<%=post.id%>" class="link-to"><%=post.comments.size.to_s + " comments"%></a></span>
       </div>
