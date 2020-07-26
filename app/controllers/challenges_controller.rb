@@ -36,6 +36,7 @@ class ChallengesController < ApplicationController
         end
     end
 
+    # creating new challenge and validating data
     def create
         @challenge = Challenge.new(challenge_params)
         @challenge.creator = current_user.name
@@ -43,11 +44,12 @@ class ChallengesController < ApplicationController
         if @challenge.save
             redirect_to challenge_path(@challenge)
         else
-            @challenges = Challenge.order(created_at: :desc)
+            @challenges = Challenge.recent
             render :index
         end
     end
 
+    # updating data of individual challenge
     def update
         @challenge = Challenge.find_by(id: params[:id])
 
@@ -58,21 +60,15 @@ class ChallengesController < ApplicationController
         end
     end
     
+    # deleting challenge
     def destroy
         Challenge.find_by(id: params[:id]).destroy
         redirect_to challenges_path
     end
 
+    # returning sorting results based on user input
     def sort
-        if params[:value] == "creation"
-            @challenges = Challenge.order(created_at: :desc)
-        elsif params[:value] == "users"
-            @challenges = Challenge.all.sort {|a, b| b.users.size <=> a.users.size}
-        elsif params[:value] == "alphabet"
-            @challenges = Challenge.all.sort {|a, b| a.title <=> b.title}
-        elsif params[:value] == "me"
-            @challenges = Challenge.where(:creator => current_user.name)
-        end
+        sort_challenges
        
         render :index
     end
