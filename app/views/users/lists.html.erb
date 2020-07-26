@@ -1,3 +1,4 @@
+<!--adding extra ccs to display multiple selection dropdown list -->
 <head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.7.5/css/bootstrap-select.min.css">
@@ -8,14 +9,13 @@
     i, span a {
         color: white;
     }
-
     label a {
         color: green;
     }
-
 </style>
 </head>
 
+<!--rendering form for selecting daily and occasional challenges -->
 <%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
             <br>
             <img src="/images/list3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
@@ -42,21 +42,24 @@
             <%end%>
 <%end%>
 
+<!--rendering previous to-do lists -->
 <%if !@user.lists.empty?%>
-<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-        <%@user.lists.order(created_at: :desc).each do |list|%>
-        <img src="/images/list2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-        <h4><%=list.title%></h4><br>
-        <hr class="w3-clear">
-        <%list.completed_challenges.each do |ch|%>
-        <span class="w3-opacity"><%=ch%></span><br>
-        <%end%>
-        <p>You collected <%=list.completed_challenges.size%> points this day!</p>
-        <%if list.title == Date.today.strftime("%Y-%m-%d")%>
-            <a href="/users/<%=@user.id%>/undo_list" class="link-to"><span class="w3-opacity" >Undo list</span></a>
-        <%end%>
-        <%end%>
-<hr class="w3-clear">
-<a href="/users/<%=@user.id%>/clear_lists" class="link-to"><span class="w3-opacity" >Clear lists</span></a>
-</div>
+    <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+            <%@user.lists.recent.each do |list|%>
+                <img src="/images/list2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                <h4><%=list.title%></h4><br>
+                <hr class="w3-clear">
+                <%list.completed_challenges.each do |ch|%>
+                <span style="color:lightgreen;"><%=ch%></span><br>
+                <%end%>
+                <br>
+                <p class="w3-opacity">You collected <%=list.completed_challenges.size%> points this day!</p>
+                <br>
+                <%if list.title == Date.today.strftime("%Y-%m-%d")%>
+                    <a href="/users/<%=@user.id%>/undo_list" class="link-to"><span class="w3-opacity" >Undo list</span></a>
+                <%end%>
+            <%end%>
+    <hr class="w3-clear">
+    <a href="/users/<%=@user.id%>/clear_lists" class="link-to"><span class="w3-opacity" >Clear lists</span></a>
+    </div>
 <%end%>

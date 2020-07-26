@@ -10,4 +10,7 @@ class Post < ApplicationRecord
     validates :title, length: { in: 5..50 }
     validates :content, length: { maximum: 300 }
 
+    scope :recent, -> { order(created_at: :desc) }
+
+
 end

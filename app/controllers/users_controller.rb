@@ -19,11 +19,13 @@ class UsersController < ApplicationController
         redirect_to edit_user_path(@user)
     end
 
+    # rendering pending and previous to-do lists based on user's commitments
     def lists
-        @user = User.find_by(id: params[:id])
-        @commitments = current_user.commitments
+        @user = current_user
+        @commitments = @user.commitments
     end
 
+    # creating list with completed challenges and validating if list for today was already submitted
     def complete_list
         
         if current_user.lists.last && Date.today.strftime("%Y-%m-%d") == current_user.lists.last.title
@@ -41,6 +43,7 @@ class UsersController < ApplicationController
         end
     end
 
+    # clearing list display without deleting points for completed challenges
     def clear_lists
         @user = User.find_by(id: params[:id])
         @user.lists.delete_all
@@ -48,6 +51,7 @@ class UsersController < ApplicationController
         redirect_to "/users/#{@user.id}/lists"
     end
 
+    # deleting last list and subtracting previously added points
     def undo_lists
         @user = User.find_by(id: params[:id])
         @user.points -= @user.lists.last.completed_challenges.size
@@ -57,6 +61,7 @@ class UsersController < ApplicationController
         redirect_to "/users/#{@user.id}/lists"
     end
 
+    # rendering page with total user data
     def report
     end
 

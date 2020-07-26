@@ -9,4 +9,6 @@ class Challenge < ApplicationRecord
     validates :description, presence: true
     validates :description, length: { maximum: 1000 }
 
+    scope :recent, -> { order(created_at: :desc) }
+
 end

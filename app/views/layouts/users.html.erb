@@ -37,7 +37,7 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
       <!-- Profile -->
       <div class="w3-card w3-round w3-white">
         <div class="w3-container">
-         <h4 class="w3-center"><%=current_user.name%></h4>
+         <h4 class="w3-center"><a href="/users/<%=current_user.id%>/edit" class="link-to"><%=current_user.name%></a></h4>
          <p class="w3-center"><img src="<%=current_user.avatar%>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></p>
          <hr>
          <p><i class="fa fa-pencil fa-fw w3-margin-right w3-text-theme"></i> <%=current_user.email %></p>
