@@ -1,10 +1,10 @@
 class GroupsController < ApplicationController
     include UserHelper
-    
     layout "users"
 
+    # displaying all groups in descending order
     def index
-        @groups = Group.order(created_at: :desc)
+        @groups = Group.recent
     end
 
     def show
@@ -46,7 +46,6 @@ class GroupsController < ApplicationController
 
     def sort
         sort_groups
-        
         render :index
     end
 
