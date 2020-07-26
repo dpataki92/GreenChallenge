@@ -12,6 +12,7 @@ class UsersController < ApplicationController
         @user = User.find_by(id: session[:user_id])
     end
 
+    # updating user data and redirecting to edit form
     def update
         @user = User.find_by(id: session[:user_id])
         @user.update(user_params)
@@ -19,7 +20,6 @@ class UsersController < ApplicationController
     end
 
     def lists
-        
         @user = User.find_by(id: params[:id])
         @commitments = current_user.commitments
     end

@@ -1,3 +1,4 @@
+<!-- pre-fill fields with existing data and render fields for extra user data -->
 <div class="w3-row-padding">
     <div class="w3-col m12">
         <div class="w3-card w3-round w3-white">
@@ -255,9 +256,11 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
             </datalist>
+
             Average point goal: <%= f.number_field(:goal, class: "w3-border w3-padding")%><br>
             <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Save</button> 
             <%end%><br>
+            
             <h6 class="w3-opacity">Change your avatar:</h6><br>
             <%avatar_selection.each do |a|%>
                  <%=form_tag("/users/#{@user.id}", method: :patch, style:"display:inline;") do%>
