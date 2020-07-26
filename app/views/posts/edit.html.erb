@@ -1,0 +1,14 @@
+<div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+    <img src="<%=@post.user.avatar%>" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+    <span class="w3-right w3-opacity"><%=time_ago_in_words @post.created_at%></span>
+    <a href="/groups/<%=@post.group.id%>" class="link-to"><h4><%=@post.group.name%></h4></a><br>
+    <hr class="w3-clear">
+    <div class="w3-container w3-padding">
+            <%= form_for [@user, @post] do |f| %>
+            Title: <%= f.text_field(:title, class: "w3-border w3-padding text-field-post w3-opacity", required: true)%><br>
+            Content: <%= f.text_area(:content, class: "textarea-challenge w3-opacity", required: true)%>
+            <%= f.hidden_field(:group)%>
+            <button class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil fa-fw w3-margin-right" ></i>Edit post</button>
+            <%end%>
+    </div>
+</div>

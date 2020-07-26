@@ -8,6 +8,8 @@ class PostsController < ApplicationController
     end
 
     def edit
+        @post = Post.find_by(id: params[:id])
+        @user = User.find_by(id: params[:user_id])
     end
 
     def create
@@ -20,6 +22,11 @@ class PostsController < ApplicationController
     end
 
     def update
+        @post = Post.find_by(id: params[:id])
+
+        @post.update(post_params)
+        binding.pry
+        redirect_to user_post_path(@post)
     end
 
     def post_like
