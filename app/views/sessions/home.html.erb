@@ -1,14 +1,16 @@
-
-    
+<%= content_tag(:div, class: "wrapper fadeInDown") do %>
+  <%= content_tag(:div, class: "formContent") do %>
+    <%= content_tag(:div, class: "fadeIn first") do %>
+ 
     <%= content_tag(:div, class: "container") do %>
 
     <%= form_tag("/login") do%>
         
         <%= content_tag(:div, class: "row") do %>
-          <%= content_tag(:h2, style: "text-align:center") do %>
+          <%= content_tag(:h2, style: "text-align:center", class:"w3-opacity") do %>
             Welcome to GreenChallenge!
           <%end%>
-          <%= content_tag(:h4, style: "text-align:center") do %>
+          <%= content_tag(:h4, style: "text-align:center", class:"w3-opacity") do %>
             Login with Social Media or Manually
           <%end%>
         <%= content_tag(:div, class: "vl") do %>
@@ -30,15 +32,17 @@
               <%end%>
               <%= submit_tag("Login")%>
         <%end%>
-
-        <%end%>
+      <%end%>
     <%end%>
     <%end%>
 
     <%= content_tag(:div, class: "bottom-container") do %>
-      <%= content_tag(:div, class: "row") do %>
-        <%= link_to "Sign up", "/signup", style: "color:white", class: "btn" %>
+      <%= content_tag(:div, class: "row w3-opacity") do %>
+        <%= link_to "Sign up", "/signup", style: "color:white;", class: "btn" %>
       <%end%>
     <%end%>
 
+   <%end%>
+<%end%>
+<%end%>
 
