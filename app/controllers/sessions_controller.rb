@@ -2,6 +2,11 @@ class SessionsController < ApplicationController
 
     # rendering view for third-party and manual login / signup
     def home
+        if logged_in?
+            redirect_to "/users/#{User.find_by(id: session[:user_id]).id}"
+        else
+            render :home
+        end
     end
 
     # finds / creates and logs in user based on third-party authentication
@@ -32,7 +37,12 @@ class SessionsController < ApplicationController
     end
 
     # renders form for manual signup
-    def signup_page
+    def signup
+        if logged_in?
+            redirect_to "/users/#{User.find_by(id: session[:user_id]).id}"
+        else
+            render :signup
+        end
     end
 
     # handles manual signup and aithentication
@@ -44,14 +54,18 @@ class SessionsController < ApplicationController
 
             redirect_to "/users/#{@user.id}"
         else
-            redirect_to "/signup", notice: "Invalid user data!"
+            redirect_to "/signup", notice: "Sorry, invalid data!"
         end
     end
 
     # logs out user
     def destroy
-        session.clear
-        redirect_to "/"
+        if logged_in?
+            session.clear
+            redirect_to "/"
+        else
+            redirect_to "/"
+        end
     end
 
      
