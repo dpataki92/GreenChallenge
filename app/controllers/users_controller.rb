@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
     include UserHelper
-    
     layout "users"
 
+    # rendering user home page with newsfeed
     def show
         @user = User.find_by(id: session[:user_id])
     end
 
+    # rendering form for editing user data
     def edit
         @user = User.find_by(id: session[:user_id])
     end

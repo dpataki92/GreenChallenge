@@ -13,14 +13,4 @@ class User < ApplicationRecord
     validates :email, presence: true, format: /.+@.+\.{1}.{2,}/
     validates :email, uniqueness: true
 
-    def newsfeed
-        arr = []
-        self.groups.each do |g|
-            g.posts.each do |p|
-                arr << p
-            end
-        end
-        arr.sort {|a,b| b.created_at <=> a.created_at}
-    end
-
 end
