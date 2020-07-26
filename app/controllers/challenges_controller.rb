@@ -73,6 +73,7 @@ class ChallengesController < ApplicationController
         render :index
     end
 
+    # adding challenge to user's challenges if user hasn't commited to it before
     def commit
         @challenge = Challenge.find_by(id: params[:id])
 
@@ -83,6 +84,7 @@ class ChallengesController < ApplicationController
         redirect_to challenge_path(@challenge)
     end
 
+    # removing challenge from user's challenges
     def uncommit
         @challenge = Challenge.find_by(id: params[:id])
 

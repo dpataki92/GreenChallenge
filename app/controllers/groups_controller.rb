@@ -45,14 +45,8 @@ class GroupsController < ApplicationController
     end
 
     def sort
-        if params[:value] == "creation"
-            @groups = Group.order(created_at: :desc)
-        elsif params[:value] == "users"
-            @groups = Group.all.sort {|a, b| b.users.size <=> a.users.size}
-        elsif params[:value] == "alphabet"
-            @groups = Group.all.sort {|a, b| a.name <=> b.name}
-        end
-
+        sort_groups
+        
         render :index
     end
 

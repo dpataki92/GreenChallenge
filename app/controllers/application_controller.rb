@@ -19,4 +19,14 @@ class ApplicationController < ActionController::Base
             @challenges = Challenge.where(:creator => current_user.name)
         end
     end
+
+    def sort_groups
+        if params[:value] == "creation"
+            @groups = Group.order(created_at: :desc)
+        elsif params[:value] == "users"
+            @groups = Group.all.sort {|a, b| b.users.size <=> a.users.size}
+        elsif params[:value] == "alphabet"
+            @groups = Group.all.sort {|a, b| a.name <=> b.name}
+        end
+    end
 end
