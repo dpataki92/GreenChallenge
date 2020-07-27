@@ -7,8 +7,6 @@ class GroupsController < ApplicationController
         if logged_in?
             @group = Group.new
             @groups = Group.recent
-            @group_member = group_member?(@group)
-            @group_creator = group_creator?(@group)
         else
             redirect_to "/"
         end
