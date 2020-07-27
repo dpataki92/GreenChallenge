@@ -141,6 +141,7 @@ class GroupsController < ApplicationController
                 @forum = true
                 @posts = @group.posts
                 @challenges = @group.challenges
+                @group_member = group_member?(@group)
 
                 render :show
             else

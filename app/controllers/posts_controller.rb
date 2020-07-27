@@ -30,14 +30,19 @@ class PostsController < ApplicationController
     # creates new post and assigns it to group and user
     def create
         @group = Group.find_by(name: params[:post][:group])
-        @post = current_user.posts.build(post_params)
 
-        if @post
-            @post.group = @group
-            @post.save
-            redirect_to "/users/#{params[:user_id]}/posts/#{@post.id}"
+        if current_user.groups.include?(@group)
+            @post = current_user.posts.build(post_params)
+
+            if @post
+                @post.group = @group
+                @post.save
+                redirect_to "/groups/#{@group.id}/forum/"
+            else
+                redirect_to "/", notice: "Sorry, invalid post data!"
+            end
         else
-            redirect_to "/", notice: "Sorry, invalid post data!"
+            redirect_to "/", notice: "Sorry, only members can post to the group."
         end
     end
 
