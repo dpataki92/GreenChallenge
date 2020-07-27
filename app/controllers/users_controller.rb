@@ -25,7 +25,7 @@ class UsersController < ApplicationController
         @commitments = @user.commitments
     end
 
-    # creating list with completed challenges and validating if list for today was already submitted
+    # creating list with completed challenges, validating if list for today was already submitted and adds points to user's points
     def complete_list
         
         if current_user.lists.last && Date.today.strftime("%Y-%m-%d") == current_user.lists.last.title
