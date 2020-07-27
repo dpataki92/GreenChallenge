@@ -52,6 +52,18 @@ class PostsController < ApplicationController
         end
     end
 
+    # deletes post if it belongs to curren user
+    def destroy
+        @post = Post.find_by(id: params[:id])
+
+        if @post.user == current_user
+            @post.destroy
+            redirect_to user_path(current_user), notice: "You have deleted your post."
+        else
+            redirect_to "/"
+        end
+    end
+
     # adds a like to post's likes and adds a point to user's points
     def post_like
         @user = User.find_by(id: params[:user_id])

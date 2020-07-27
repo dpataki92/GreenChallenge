@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   root "sessions#home"
 
   resources :users, only: [:show, :edit, :update] do
-    resources :posts, only: [:show, :edit, :create, :update]
+    resources :posts, only: [:show, :edit, :create, :update, :destroy]
     get "/posts/:id/like", to: "posts#post_like"
     post "/posts/:id/comment", to: "posts#post_comment", as: "comment"
   end
