@@ -2,12 +2,14 @@ class ApplicationController < ActionController::Base
     protect_from_forgery with: :exception
 
    
-    #helpers
+    # HELPERS
 
+    # checks if current user is logged in
     def logged_in?
         !!session[:user_id]
     end
    
+    # sorts challenges based on user input: creation date, user number, alphabetical ord3r, own challenges
     def sort_challenges
         if params[:value] == "creation"
             @challenges = Challenge.order(created_at: :desc)
@@ -20,6 +22,7 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    # sorts groups based on user input: creation date, user number, alphabetical ord3r, alphabetical order
     def sort_groups
         if params[:value] == "creation"
             @groups = Group.order(created_at: :desc)
@@ -30,14 +33,17 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    # checks if current user is member of a group
     def group_member?(group)
         current_user.groups.include?(group)
     end
 
+    # checks if current user is creator of a group
     def group_creator?(group)
         current_user.memberships.created.find {|m| m.group == group}
     end
 
+    # pushes or removes selected challenges to/from a group challenge's collection based on user input
     def add_or_remove_challenges_to_group(challenges, group)
         if params[:add]
             challenges.each do |c|
