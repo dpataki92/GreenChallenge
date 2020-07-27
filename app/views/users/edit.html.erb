@@ -267,7 +267,10 @@
                     <button type="submit" name="user[avatar]" value="<%=a%>"><img src="<%=a%>" class="w3-circle" style="height:106px;width:106px" alt="Avatar"></button>
                  <%end%>
             <%end%><br><br>
-            
+            <hr class="w3-clear">
+            <%=form_tag("/users/#{@user.id}", method: :delete) do%>
+                    <button type="submit" class="w3-button w3-theme" onclick="return confirm('Are you sure you want to delete your profile? All your data will be deleted.');"><i class="fa fa-close"></i> Delete profile</button>
+            <%end%>
         </div>
         </div>
     </div>

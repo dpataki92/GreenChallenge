@@ -19,6 +19,14 @@ class UsersController < ApplicationController
         redirect_to edit_user_path(@user)
     end
 
+    def destroy
+        if logged_in? && current_user.id == params[:id].to_i
+            current_user.destroy
+            session.clear
+            redirect_to "/"
+        end
+    end
+
     # rendering pending and previous to-do lists based on user's commitments
     def lists
         @user = current_user
@@ -31,7 +39,6 @@ class UsersController < ApplicationController
         if current_user.lists.last && Date.today.strftime("%Y-%m-%d") == current_user.lists.last.title
             redirect_to "/users/#{current_user.id}/lists", notice: "You have already completed a to-do list for today!"
         else
-            
             @list = List.create(title: "#{Date.today}", completed_challenges: params[:list], user: current_user)
             @user = User.find_by(id: params[:id])
             @user.lists << @list
