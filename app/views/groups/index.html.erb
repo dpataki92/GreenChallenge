@@ -9,9 +9,9 @@
       <% end %>
       <div class="w3-container w3-padding">
           <h6 class="w3-opacity">Create your own group! Groups should be organized around a cross-cutting issue or geographical location.</h6>
-          <%= form_tag("/groups") do%>
-          <%= text_field_tag("group[name]", nil, placeholder: "Provide a name...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
-          <%= text_area_tag("group[description]", nil, placeholder: "What is the purpose of your group?", class:"textarea-challenge w3-opacity", required: true)%>
+          <%= form_for(@group, method: :post) do |f|%>
+          <%= f.text_field(:name, placeholder: "Provide a name...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
+          <%= f.text_area(:description, placeholder: "What is the purpose of your group?", class:"textarea-challenge w3-opacity", required: true)%>
           <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Create group</button> 
           <%end%>
       </div>

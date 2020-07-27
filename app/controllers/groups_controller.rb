@@ -4,28 +4,39 @@ class GroupsController < ApplicationController
 
     # displaying all groups in descending order
     def index
-        @groups = Group.recent
+        if logged_in?
+            @group = Group.new
+            @groups = Group.recent
+        else
+            redirect_to "/"
+        end
     end
 
     # rendering individual group show page with forum
     def show
-        @group = Group.find_by(id: params[:id])
-        @challenges = @group.challenges
+        if logged_in?
+            @group = Group.find_by(id: params[:id])
+            @challenges = @group.challenges
+        else
+            redirect_to "/"
+        end
     end
 
     # rendering edit group page if user created the group
     def edit
         @group = Group.find_by(id: params[:id])
 
-        if current_user.memberships.created.find {|m| m.group == @group}
+        if logged_in? && current_user.memberships.created.find {|m| m.group == @group}
             render :edit
         else
             redirect_to group_path(@group)
         end
     end
 
+    # creating new group and allocating it to current user
     def create
         @group = Group.new(group_params)
+        @groups = Group.recent
 
         if @group.save
             current_user.memberships.create(group: @group, membership_type: "creator")
@@ -35,14 +46,14 @@ class GroupsController < ApplicationController
         end
 
     end
-
+    
     def update
         @group = Group.find_by(id: params[:id])
 
         if @group.update(group_params)
             redirect_to groups_path
         else
-            redirect_to edit_group_path(@group), notice: "Sorry, invalid data."
+            render :edit
         end
     end
     

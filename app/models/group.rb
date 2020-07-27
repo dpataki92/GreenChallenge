@@ -8,6 +8,7 @@ class Group < ApplicationRecord
 
     validates :name, presence: true
     validates :description, presence: true
+    validates :description, length: {maximum: 1500}
 
     scope :recent, -> { order(created_at: :desc) }
 

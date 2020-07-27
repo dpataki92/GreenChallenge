@@ -53,7 +53,7 @@ class ChallengesController < ApplicationController
     def update
         @challenge = Challenge.find_by(id: params[:id])
 
-        if @challenge.update(challenge_params)
+        if @challenge.update(challenge_params) && @challenge.creator == current_user.name
             redirect_to challenges_path
         else
             redirect_to edit_challenge_path(@challenge)
@@ -62,8 +62,14 @@ class ChallengesController < ApplicationController
     
     # deleting challenge
     def destroy
-        Challenge.find_by(id: params[:id]).destroy
-        redirect_to challenges_path
+        @challenge = Challenge.find_by(id: params[:id])
+
+        if logged_in? && @challenge.creator == current_user.name
+            @challenge.destroy
+            redirect_to challenges_path
+        else
+            redirect_to challenge_path(@challenge)
+        end
     end
 
     # returning sorting results based on user input
@@ -88,7 +94,9 @@ class ChallengesController < ApplicationController
     def uncommit
         @challenge = Challenge.find_by(id: params[:id])
 
-        current_user.challenges.delete(@challenge)
+        if current_user.challenges.include?(@challenge)
+            current_user.challenges.delete(@challenge)
+        end
 
         redirect_to challenge_path(@challenge)
     end
