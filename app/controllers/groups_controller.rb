@@ -75,6 +75,7 @@ class GroupsController < ApplicationController
     # sorting groups based on user input
     def sort
         sort_groups
+        @group = Group.new
         render :index
     end
 

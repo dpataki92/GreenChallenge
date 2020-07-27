@@ -76,7 +76,7 @@ class ChallengesController < ApplicationController
     # returning sorting results based on user input
     def sort
         sort_challenges
-       
+        @challenge = Challenge.new
         render :index
     end
 

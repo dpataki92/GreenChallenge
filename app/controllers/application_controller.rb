@@ -30,6 +30,8 @@ class ApplicationController < ActionController::Base
             @groups = Group.all.sort {|a, b| b.users.size <=> a.users.size}
         elsif params[:value] == "alphabet"
             @groups = Group.all.sort {|a, b| a.name <=> b.name}
+        elsif params[:value] == "me"
+            @groups = Group.select {|g| group_creator?(g)}
         end
     end
 
