@@ -1,23 +1,5 @@
 <!-- rendering form for creating new challenge -->
-<div class="w3-row-padding">
-    <div class="w3-col m12">
-        <div class="w3-card w3-round w3-white">
-        <% if @challenge && @challenge.errors.full_messages.any? %>
-          <% @challenge.errors.full_messages.each do |error_message| %>
-            <%= error_message if @challenge.errors.full_messages.first == error_message %> <br />
-          <% end %>
-        <% end %>
-        <div class="w3-container w3-padding">
-            <h6 class="w3-opacity">Have an idea? Create a new challenge here:</h6>
-            <%= form_tag("/challenges") do%>
-            <%= text_field_tag("challenge[title]", nil, placeholder: "Provide a title...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
-            <%= text_area_tag("challenge[description]", nil, placeholder: "Provide a description...", class:"textarea-challenge w3-opacity", required: true)%>
-            <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Create challenge</button> 
-            <%end%>
-        </div>
-        </div>
-    </div>
-</div><br>
+<%= render partial: "groups/new_form", locals: {instance: @challenge, field1: :title, field2: :description, headline: "Have an idea? Create a new challenge here:"} %>
 
 <!-- rendering links for sorting challenges based on different conditions -->
 <div class="w3-row-padding">

@@ -70,12 +70,7 @@
       <hr class="w3-clear">
       <p><strong><%=post.title%></strong></p>
       <p><%=post.content%></p>
-        <div class="w3-row-padding" style="margin:0 -16px">
-          <div class="w3-half">
-          </div>
-          <div class="w3-half">
-        </div>
-      </div>
+        
       <%if !current_user.posts.include?(post)%>    
         <button type="button"onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>/like'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
         <button type="button" onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>'" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>

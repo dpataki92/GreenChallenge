@@ -6,6 +6,7 @@ class ChallengesController < ApplicationController
     def index
         if logged_in?
             @challenges = Challenge.recent
+            @challenge = Challenge.new
             render :index
         else
             redirect_to "/"

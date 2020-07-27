@@ -1,23 +1,5 @@
 <!-- rendering form for creating new group -->
-<div class="w3-row-padding">
-  <div class="w3-col m12">
-      <div class="w3-card w3-round w3-white">
-      <% if @group && @group.errors.full_messages.any? %>
-        <% @group.errors.full_messages.each do |error_message| %>
-          <%= error_message if @group.errors.full_messages.first == error_message %> <br />
-        <% end %>
-      <% end %>
-      <div class="w3-container w3-padding">
-          <h6 class="w3-opacity">Create your own group! Groups should be organized around a cross-cutting issue or geographical location.</h6>
-          <%= form_for(@group, method: :post) do |f|%>
-          <%= f.text_field(:name, placeholder: "Provide a name...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
-          <%= f.text_area(:description, placeholder: "What is the purpose of your group?", class:"textarea-challenge w3-opacity", required: true)%>
-          <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Create group</button> 
-          <%end%>
-      </div>
-      </div>
-  </div>
-</div><br>
+<%= render partial: "groups/new_form", locals: {instance: @group, field1: :name, field2: :description, headline: "Create a group here. Groups should be organized around a cross-cutting issue or a geographical location."} %>
 
 <!-- rendering links for sorting groups based on different conditions -->
 <div class="w3-row-padding">
