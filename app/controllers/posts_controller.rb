@@ -6,7 +6,8 @@ class PostsController < ApplicationController
     # shows post with related comments if user is group member of post's group
     def show
         @post = Post.find_by(id: params[:id])
-
+        @comment = Comment.new
+        
         if logged_in? && group_member?(@post.group)
             render :show
         else

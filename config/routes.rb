@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update] do
     resources :posts, only: [:show, :edit, :create, :update]
     get "/posts/:id/like", to: "posts#post_like"
-    post "/posts/:id/comment", to: "posts#post_comment"
+    post "/posts/:id/comment", to: "posts#post_comment", as: "comment"
   end
 
   # additional routes for UsersController

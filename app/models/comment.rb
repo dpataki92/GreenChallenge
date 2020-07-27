@@ -6,4 +6,6 @@ class Comment < ApplicationRecord
     validates :content, presence: true
     validates :content, length: { maximum: 100 }
 
+    scope :recent, -> { order(created_at: :desc) }
+
 end
