@@ -46,9 +46,8 @@
 <%if !@user.lists.empty?%>
     <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
             <%@user.lists.recent.each do |list|%>
-                <img src="/images/list2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+                <img src="/images/list2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"><br>
                 <h4><%=list.title%></h4><br>
-                <hr class="w3-clear">
                 <%list.completed_challenges.each do |ch|%>
                 <span style="color:lightgreen;"><%=ch%></span><br>
                 <%end%>
@@ -56,7 +55,8 @@
                 <p class="w3-opacity">You collected <%=list.completed_challenges.size%> points this day!</p>
                 <br>
                 <%if list.title == Date.today.strftime("%Y-%m-%d")%>
-                    <a href="/users/<%=@user.id%>/undo_list" class="link-to"><span class="w3-opacity" >Undo list</span></a>
+                    <a href="/users/<%=@user.id%>/undo_list" class="link-to"><span class="w3-opacity" >Undo list</span></a><br>
+                    <hr class="w3-clear">
                 <%end%>
             <%end%>
     <hr class="w3-clear">
