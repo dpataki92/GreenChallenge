@@ -1,24 +1,31 @@
-# README
+GreenChallenge is a basic social network platform for people who intend to pursue an eco-friendly lifestyle.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Users can commit to built-in challenges that represent green habits (e.g. Shorten Your Shower Time, Have A Vegetarian Day, etc.) or even create new challenges and share them with other users. Users can set the regularity of their commitments (e.g. daily or occasional) and generate daily to-do lists with their timely challenges. They can mark the challenges complete or incomplete and collect points for the completed challenges. Users can set average point goals and ask for reports containing the results of a certain period.
 
-Things you may want to cover:
+In addition, users can join or create groups. Groups are organized either around a cross-cutting issue (e.g. Sustainable water consumption) or a geographical location (e.g. Olympia, WA). Groups have recommended challenges (including private, group specific ones) and forums where members can share posts with each other. 
 
-* Ruby version
+# Installation
 
-* System dependencies
+- Fork and git clone repo. 
 
-* Configuration
+# Usage
 
-* Database creation
+- Cd into folder.
 
-* Database initialization
+- Run bundle install to install dependencies.
 
-* How to run the test suite
+- Run rake db:migrate and rake db:seed.
 
-* Services (job queues, cache servers, search engines, etc.)
+- Run rails s.
 
-* Deployment instructions
+# Contributing
 
-* ...
+Bug reports and pull requests are welcome on GitHub at https://github.com/dpataki92/GreenChallenge. This project is intended to be a safe and welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
+
+# License
+
+The project is available as open source under the terms of the MIT License.
+
+# Code of Conduct
+
+Everyone interacting in the GreenChallenge project’s codebases, issue trackers, chat rooms and mailing lists is expected to follow the code of conduct.
