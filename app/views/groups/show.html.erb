@@ -27,16 +27,16 @@
     <%end%>
     <hr class="w3-clear">
 
-    <%if current_user.groups.include?(@group)%>
+    <%if @group_member%>
       <a href="/groups/<%=@group.id%>/forum" class="link-to"><span class="w3-opacity" style="margin-right:5px">Show forum</span></a>
     <%else%>
       <button type="button"onclick="location.href='/groups/<%=@group.id%>/join'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Join group</button> 
     <%end%>
 
-    <%if current_user.memberships.select {|m| m.membership_type == "creator"}.find {|m| m.group == @group}%>
+    <%if @group_creator%>
       <a href="/groups/<%=@group.id%>/edit"><span class="w3-opacity w3-right link-to" >Edit group data</span></a>
       <a href="/groups/<%=@group.id%>/group_challenges"><span class="w3-opacity w3-right link-to" style="margin-right:5px;">Edit group challenges</span></a>
-    <%elsif current_user.groups.include?(@group)%>
+    <%elsif @group_member%>
       <a href="/groups/<%=@group.id%>/leave" class="link-to" onclick="return confirm('Are you sure you want to leave the group?');"><span class="w3-opacity w3-right" >Leave the group</span></a><br><br>
     <%end%>
 </div>

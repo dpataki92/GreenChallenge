@@ -42,8 +42,7 @@
       <hr class="w3-clear">
       <p><%=group.description%></p>
 
-      <%membership = current_user.memberships.find {|m| m.group == group}%>
-      <%if membership && membership.membership_type == "creator"%>
+      <%if @group_creator%>
         <button type="button"onclick="location.href='/groups/<%=group.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Show group</button> 
         <button type="button"onclick="location.href='/groups/<%=group.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit group</button> 
       <%else%>

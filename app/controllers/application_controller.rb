@@ -30,4 +30,29 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    def group_member?(group)
+        current_user.groups.include?(group)
+    end
+
+    def group_creator?(group)
+        current_user.memberships.created.find {|m| m.group == group}
+    end
+
+    def add_or_remove_challenges_to_group(challenges, group)
+        if params[:add]
+            challenges.each do |c|
+                if !group.challenges.include?(Challenge.find_by(title: c))
+                    group.challenges << Challenge.find_by(title: c)
+                    group.save
+                end
+            end
+        elsif params[:remove]
+            challenges.each do |c|
+                if group.challenges.include?(Challenge.find_by(title: c))
+                    group.challenges.delete(Challenge.find_by(title: c))
+                end
+            end
+        end
+    end
+
 end
