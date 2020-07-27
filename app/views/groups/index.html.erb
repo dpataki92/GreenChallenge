@@ -2,18 +2,8 @@
 <%= render partial: "groups/new_form", locals: {instance: @group, field1: :name, field2: :description, headline: "Create a group here. Groups should be organized around a cross-cutting issue or a geographical location."} %>
 
 <!-- rendering links for sorting groups based on different conditions -->
-<div class="w3-row-padding">
-  <div class="w3-col m12">
-      <div class="w3-card w3-round w3-white">
-      <div class="w3-container w3-padding sort-challenge">
-          <a href="/groups/sort/<%="creation"%>" class="link-to el-item"><span class="w3-opacity" >Most recent</span></a>
-          <a href="/groups/sort/<%="users"%>" class="link-to el-item"><span class="w3-opacity" >Most popular</span></a>
-          <a href="/groups/sort/<%="alphabet"%>" class="link-to el-item"><span class="w3-opacity" >Alphabetical</span></a>
-          <a href="/groups/sort/<%="me"%>" class="link-to el-item"><span class="w3-opacity" >My groups</span></a>
-      </div>
-      </div>
-  </div>
-</div>
+<%= render partial: "groups/sort_links", locals: {instance: @group} %>
+
 
 <!-- displaying all groups and adding routes for editing based on membership typpe -->
 <%@groups.each do |group|%>
