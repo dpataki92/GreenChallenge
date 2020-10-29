@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
     include UserHelper
     layout "users"
 
-    # displaying all groups in descending order
+    # displays all groups based on creation date in descending order
     def index
         if logged_in?
             @group = Group.new
@@ -12,7 +12,7 @@ class GroupsController < ApplicationController
         end
     end
 
-    # rendering individual group show page with forum
+    # renders individual group show page along with its forum
     def show
         if logged_in?
             @group = Group.find_by(id: params[:id])
@@ -24,7 +24,7 @@ class GroupsController < ApplicationController
         end
     end
 
-    # rendering edit group page if user created the group
+    # renders edit group page if user created the group
     def edit
         @group = Group.find_by(id: params[:id])
 
@@ -35,7 +35,7 @@ class GroupsController < ApplicationController
         end
     end
 
-    # creating new group and allocating it to current user
+    # creates new group and assigns it to current user
     def create
         @group = Group.new(group_params)
         @groups = Group.recent
@@ -46,10 +46,9 @@ class GroupsController < ApplicationController
         else
             render :index
         end
-
     end
 
-    # updating group data if user is creator
+    # updates group data if user is the group creator
     def update
         @group = Group.find_by(id: params[:id])
 
@@ -60,7 +59,7 @@ class GroupsController < ApplicationController
         end
     end
     
-    # deleting group if user is creator
+    # deletes group if user is the group creator
     def destroy
         @group = Group.find_by(id: params[:id])
 
@@ -72,14 +71,14 @@ class GroupsController < ApplicationController
         end
     end
 
-    # sorting groups based on user input
+    # returns sorting results based on user input
     def sort
         sort_groups
         @group = Group.new
         render :index
     end
 
-    # pushing all group challenges to user's challenge collection based on set regularity
+    # pushes all group challenges to user's challenge collection with regard to regularity
     def commit_all
         if logged_in?
             @group = Group.find_by(id: params[:id])
@@ -99,7 +98,7 @@ class GroupsController < ApplicationController
         end
     end
 
-    # rendering challenges that are not already included in user's challenge collection
+    # renders group challenges that are not already included in user's challenge collection
     def sort_challenges
         if logged_in?
             @group = Group.find_by(id: params[:id])
@@ -111,7 +110,7 @@ class GroupsController < ApplicationController
         end
     end
 
-    # listing all challenges to add to group's challenges if user is creator
+    # lists all challenges to add to group's challenges if user is the creator
     def group_challenges
         @group = Group.find_by(id: params[:id])
 
@@ -122,9 +121,8 @@ class GroupsController < ApplicationController
         end
     end
 
-    # pushing selected challenges to group's challenges if it's not included already
+    # pushes selected challenges to group's challenges if it's not included already
     def edit_challenges
-       
         @group = Group.find_by(id: params[:id])
         @challenges = params[:group_challenges]
 
@@ -133,7 +131,7 @@ class GroupsController < ApplicationController
         redirect_to group_path(@group)
     end
 
-    # showing forum if user is group member
+    # shows forum if user is a group member
     def forum
         if logged_in?
             @group = Group.find_by(id: params[:id])
@@ -165,7 +163,7 @@ class GroupsController < ApplicationController
         redirect_to group_path(@group), notice: "You have successfully joined the group!"
     end
 
-    # lets user leave the group if has membership
+    # lets user leave the group if user is a member
     def leave
         @group = Group.find_by(id: params[:id])
 
@@ -175,10 +173,9 @@ class GroupsController < ApplicationController
         else
             redirect_to "/"
         end
-
     end
 
-    # remove all group challenges from user's challenge collection
+    # removes all group challenges from user's challenge collection
     def uncommit_all
         @group = Group.find_by(id: params[:id])
 
