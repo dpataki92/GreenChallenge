@@ -1,8 +1,15 @@
-GreenChallenge is a basic social network platform for people who intend to pursue an eco-friendly lifestyle.
+# GreenChallenge  
 
-Users can commit to built-in challenges that represent green habits or create new challenges and share them with other users. Users can set the regularity of their commitments and generate daily to-do lists with their timely challenges. They can mark the challenges complete, submit their to-do lists, and collect points for the completed challenges. Users can set average daily point goals and ask for reports containing the results of a certain period.
+Simple social network platform built in Ruby on Rails for people who intend to pursue an eco-friendly lifestyle. 
 
-In addition, users can join or create groups. Groups are organized around a cross-cutting issue or a geographical location. Groups have recommended challenges and forums where members can share posts with each other. 
+The application helps users to build stronger green habits, hold themselves accountable, and engage with like-minded people. Besides other features, users can:  
+ 
+- commit to built-in challenges that represent green habits
+- create new challenges and share them with other users
+- generate daily to-do lists with timely challenges, get notifications about due to-dos, and collect points for completed challenges
+- set point goals and generate reports to track progress
+- join or create groups organized around a green issue, share posts with group members, and commit to group challenges
+- stay up-to-date with group news by following the news feed 
 
 # Installation
 
