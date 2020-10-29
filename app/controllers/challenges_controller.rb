@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
     include UserHelper
     layout "users"
 
-    # rendering page with all challenges and sorting links
+    # renders page with all challenges and sorting links
     def index
         if logged_in?
             @challenges = Challenge.recent
@@ -13,7 +13,7 @@ class ChallengesController < ApplicationController
         end
     end
 
-    # rendering show page for individual challenge
+    # renders show page of a certain challenge
     def show
         if logged_in?
             @challenge = Challenge.find_by(id: params[:id])
@@ -23,7 +23,7 @@ class ChallengesController < ApplicationController
         end
     end
 
-    # rendering edit page if challenge belongs to current user
+    # renders edit page if the challenge belongs to current user
     def edit
         if logged_in?
             @challenge = Challenge.find_by(id: params[:id])
@@ -37,7 +37,7 @@ class ChallengesController < ApplicationController
         end
     end
 
-    # creating new challenge and validating data
+    # creates new challenge and validates data
     def create
         @challenge = Challenge.new(challenge_params)
         @challenge.creator = current_user.name
@@ -50,7 +50,7 @@ class ChallengesController < ApplicationController
         end
     end
 
-    # updating data of individual challenge
+    # updates data of individual challenge
     def update
         @challenge = Challenge.find_by(id: params[:id])
 
@@ -61,7 +61,7 @@ class ChallengesController < ApplicationController
         end
     end
     
-    # deleting challenge
+    # deletes challenge
     def destroy
         @challenge = Challenge.find_by(id: params[:id])
 
@@ -73,14 +73,14 @@ class ChallengesController < ApplicationController
         end
     end
 
-    # returning sorting results based on user input
+    # returns sorting results based on user input
     def sort
         sort_challenges
         @challenge = Challenge.new
         render :index
     end
 
-    # adding challenge to user's challenges if user hasn't commited to it before
+    # adds challenge to user's challenges if user did not add the challenge before
     def commit
         @challenge = Challenge.find_by(id: params[:id])
 
@@ -91,7 +91,7 @@ class ChallengesController < ApplicationController
         redirect_to challenge_path(@challenge)
     end
 
-    # removing challenge from user's challenges
+    # removes challenge from user's challenges
     def uncommit
         @challenge = Challenge.find_by(id: params[:id])
 
