@@ -1,9 +1,9 @@
 class SessionsController < ApplicationController
 
-    # rendering view for third-party and manual login / signup
+    # renders view for third-party and manual login / signup
     def home
         if logged_in?
-            redirect_to "/users/#{User.find_by(id: session[:user_id]).id}"
+            redirect_to "/users/#{current_user.id}"
         else
             render :home
         end
@@ -24,7 +24,6 @@ class SessionsController < ApplicationController
 
     # handles manual login and authentication
     def manual_login
-        
         @user = User.find_by(name: params[:user][:name])
      
         if @user && @user.authenticate(params[:user][:password])
@@ -39,7 +38,7 @@ class SessionsController < ApplicationController
     # renders form for manual signup
     def signup
         if logged_in?
-            redirect_to "/users/#{User.find_by(id: session[:user_id]).id}"
+            redirect_to "/users/#{current_user.id}"
         else
             render :signup
         end
