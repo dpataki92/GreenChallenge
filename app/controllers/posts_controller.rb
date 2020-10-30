@@ -1,9 +1,8 @@
 class PostsController < ApplicationController
     include UserHelper
-    
     layout "users"
     
-    # shows post with related comments if user is group member of post's group
+    # shows post with related comments if user is q group member of post's group
     def show
         @post = Post.find_by(id: params[:id])
         @comment = Comment.new
@@ -57,7 +56,7 @@ class PostsController < ApplicationController
         end
     end
 
-    # deletes post if it belongs to curren user
+    # deletes post if it belongs to current user
     def destroy
         @post = Post.find_by(id: params[:id])
 
@@ -86,7 +85,7 @@ class PostsController < ApplicationController
         end
     end
 
-    # adds comment to post and assigns it to user
+    # adds comment to post and assigns it to current user
     def post_comment
         @post = Post.find_by(id: params[:id])
         @comment = @post.comments.create(comment_params)
