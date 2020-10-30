@@ -2,23 +2,24 @@ class UsersController < ApplicationController
     include UserHelper
     layout "users"
 
-    # rendering user home page with newsfeed
+    # renders user home page with newsfeed
     def show
         @user = User.find_by(id: session[:user_id])
     end
 
-    # rendering form for editing user data
+    # renders form for editing user data
     def edit
         @user = User.find_by(id: session[:user_id])
     end
 
-    # updating user data and redirecting to edit form
+    # updates user data and redirects to edit form
     def update
         @user = User.find_by(id: session[:user_id])
         @user.update(user_params)
         redirect_to edit_user_path(@user)
     end
 
+    # deletes current user's profile
     def destroy
         if logged_in? && current_user.id == params[:id].to_i
             current_user.destroy
@@ -27,15 +28,14 @@ class UsersController < ApplicationController
         end
     end
 
-    # rendering pending and previous to-do lists based on user's commitments
+    # renders pending and previous to-do lists based on current user's commitments
     def lists
         @user = current_user
         @commitments = @user.commitments
     end
 
-    # creating list with completed challenges, validating if list for today was already submitted and adds points to user's points
+    # creates list with completed challenges, validates if list was already submitted and gives user points for completed challenges
     def complete_list
-        
         if current_user.lists.last && Date.today.strftime("%Y-%m-%d") == current_user.lists.last.title
             redirect_to "/users/#{current_user.id}/lists", notice: "You have already completed a to-do list for today!"
         else
@@ -50,7 +50,7 @@ class UsersController < ApplicationController
         end
     end
 
-    # clearing list display without deleting points for completed challenges
+    # clears list display without deleting points for completed challenges
     def clear_lists
         @user = User.find_by(id: params[:id])
         @user.lists.delete_all
@@ -58,7 +58,7 @@ class UsersController < ApplicationController
         redirect_to "/users/#{@user.id}/lists"
     end
 
-    # deleting last list and subtracting previously added points
+    # deletes last list and subtracts previously added points
     def undo_lists
         @user = User.find_by(id: params[:id])
         @user.points -= @user.lists.last.completed_challenges.size
@@ -68,14 +68,9 @@ class UsersController < ApplicationController
         redirect_to "/users/#{@user.id}/lists"
     end
 
-    # rendering page with total user data
-    def report
-    end
-
     private
 
     def user_params
         params.require(:user).permit(:name, :email, :password, :country, :avatar, :goal)
     end
-
 end
