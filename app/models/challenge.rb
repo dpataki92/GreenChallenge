@@ -1,5 +1,4 @@
 class Challenge < ApplicationRecord
-
     has_many :commitments
     has_many :users, through: :commitments
     has_many :group_challenges
@@ -10,5 +9,4 @@ class Challenge < ApplicationRecord
     validates :description, length: { maximum: 1000 }
 
     scope :recent, -> { order(created_at: :desc) }
-
 end

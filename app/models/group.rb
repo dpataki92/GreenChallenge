@@ -1,5 +1,4 @@
 class Group < ApplicationRecord
-
     has_many :memberships
     has_many :posts
     has_many :users, through: :memberships
@@ -11,5 +10,4 @@ class Group < ApplicationRecord
     validates :description, length: {maximum: 1500}
 
     scope :recent, -> { order(created_at: :desc) }
-
 end

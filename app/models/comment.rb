@@ -1,5 +1,4 @@
 class Comment < ApplicationRecord
-
     belongs_to :post
     belongs_to :user
 
@@ -7,5 +6,4 @@ class Comment < ApplicationRecord
     validates :content, length: { maximum: 100 }
 
     scope :recent, -> { order(created_at: :desc) }
-
 end
