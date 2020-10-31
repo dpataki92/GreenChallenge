@@ -12,16 +12,22 @@
             GreenChallenge
           <%end%>
           <%= content_tag(:h4, style: "text-align:center; color:green;", class:"w3-opacity") do %>
-            Make your days a little bit greener
+            Make your days a little bit greener 
           <%end%>
         <%= content_tag(:div, class: "vl") do %>
           <%= content_tag(:span, class: "vl-innertext") do %>or<%end%>
         <%end%>
 
         <%= content_tag(:div, class: "col") do %>
-            <%= link_to "Login with Facebook", "/auth/facebook", action: "create", class: "fb btn"%>
-            <%= link_to "Login with Twitter", "/auth/twitter", class: "twitter btn"%>
-            <%= link_to "Login with Google", "/auth/google_oauth2", class: "google btn"%>
+            <a href="/auth/facebook" class="fb btn">
+             <i class="fa fa-facebook-official"></i> Continue with Facebook 
+            </a>
+            <%= link_to "/auth/twitter", class: "twitter btn" do%>
+              <i class="fa fa-twitter"></i> Continue with Twitter
+            <%end%>
+            <%= link_to "/auth/google_oauth2", class: "google btn" do%>
+              <i class="fa fa-google"></i> Continue with Google
+            <%end%>
         <%end%>
 
         <%= content_tag(:div, class: "col") do %>
