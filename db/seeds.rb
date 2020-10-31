@@ -1,4 +1,4 @@
-# test users
+# creates test users
     user1 = User.create(name: "user one", email: "userone@gmail.com", password_digest: BCrypt::Password.create("pkfnjbhrpewrt"), country: "Hungary")
     user2 = User.create(name: "user two", email: "usertwo@gmail.com", password_digest: BCrypt::Password.create("grt4bbzb"), country: "Hungary")
     user3 = User.create(name: "user three", email: "userthree@gmail.com", password_digest: BCrypt::Password.create("evt4btbrz"), country: "United States")
@@ -12,7 +12,7 @@
     user11 = User.create(name: "user eleven", email: "usereleven@gmail.com", password_digest: BCrypt::Password.create("kjjbbopwrf3"), country: "South Korea")
     user12 = User.create(name: "user twelve", email: "usertwelve@gmail.com", password_digest: BCrypt::Password.create("Iamuser12"), country: "United States")
 
-# built-in challenges
+# creates built-in challenges
     challenge1 = Challenge.create(title: "Use Energy Efficient Lightbulbs", description: "Energy efficient lightbulbs are a simple way to reduce the amount of power you use. Not only will this help the planet, it will also save your bank balance too. By replacing just one lightbulb, the effect can be tremendous. If every house in the USA did this, it would reduce pollution by the same amount as removing one million cars from the road!", creator: User.all[rand 0..(User.all.size - 1)].name)
     challenge2 = Challenge.create(title: "Turn Your Computer Off Overnight", description: "If you turn your computer off every night, again you will reduce the power you use. You will save an average of $14 a year. It’s not a huge amount, but better in your pocket than your energy supplier’s right?", creator: User.all[rand 0..(User.all.size - 1)].name)
     challenge3 = Challenge.create(title: "Garden Manually", description: "Try to avoid using a hose pipe – use a watering can instead to concentrate on the areas you need watering. Try to water first thing before the sun is up to reduce water wasted to evaporation. Rake old clippings by hand, or leave them to fertilise your soil. Use vinegar on weeds instead of harsh weed killers.", creator: User.all[rand 0..(User.all.size - 1)].name)
@@ -64,7 +64,7 @@
     challenge49 = Challenge.create(title: "Use Rechargeable Batteries", description: "It’s no secret that the corrosive acid in throw away batteries is extremely damaging to soil when they end up in landfills. Although the recharging unit is initially an unexpected expense, long term, this will save you money. And you’ll never find yourself short of a battery when you need one!", creator: User.all[rand 0..(User.all.size - 1)].name)
     challenge50 = Challenge.create(title: "Share The Knowledge", description: "Often, when people are damaging the environment, it is because they don’t have the facts, or haven’t considered a particular course of action. Share this list with your friends – if each of them takes on board just one point, the effect could be immense. And if they share it on too, think of the mass chain reaction.Let’s work together to make the world a better place.", creator: User.all[rand 0..(User.all.size - 1)].name)
 
-# assigning commitments and challenges through commitments to users
+# assigns commitments and challenges through commitments to users
     Challenge.all.each do |ch|
         user_number = rand 0..(User.all.size - 1)
         regularity = ["daily", "occasional"][rand 0..1]
@@ -73,15 +73,14 @@
         user.save
     end
 
-# test groups
+# creates groups
     group1 = Group.create(name: "Green Olympia", description: "This group was created for sharing knowledge and tips related to eco-friendly lifestyle among people living in Olympia, Washington.")
     group2 = Group.create(name: "Green Budapest", description: "This group was created for sharing knowledge and tips related to eco-friendly lifestyle among people living in Budapest, Hungary.")
     group3 = Group.create(name: "Sustainable Water Use", description: "This group was created for sharing knowledge and tips related to sustainable water consumption and supply.")
     group4 = Group.create(name: "Waste Management", description: "This group was created for sharing knowledge and tips related to sustainable water consumption and supply.")
     group5 = Group.create(name: "Sustainable Energy", description: "This group was created for sharing knowledge and tips related to sustainable water consumption and supply.")
 
-# assigning challenges to groups
-
+# assigns challenges to groups
     # group1
     group1.challenges << challenge3
     group1.challenges << challenge8
@@ -119,8 +118,7 @@
     group5.challenges << challenge4
     group5.challenges << challenge49
 
-# assigning members to the groups
-
+# assigns members to the groups
     user1.memberships.create(membership_type: "creator", group: group2)
     user3.memberships.create(membership_type: "creator", group: group1)
     user5.memberships.create(membership_type: "creator", group: group3)
@@ -133,7 +131,7 @@
         end
     end
 
-# assigning posts to groups and members
+# assigns posts to groups and members
     30.times do
         title = "Lorem Ipsum"
         content = "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
@@ -144,7 +142,7 @@
     end
 
 
-# assigning random comments to posts
+# assigns random comments to posts
     20.times do
         post = Post.all[rand 0..(Post.all.size)]
         
