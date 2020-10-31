@@ -1,11 +1,10 @@
-<!-- rendering form for creating new challenge -->
+<!-- renders form for creating new challenge -->
 <%= render partial: "groups/new_form", locals: {instance: @challenge, field1: :title, field2: :description, headline: "Have an idea? Create a new challenge here:"} %>
 
-<!-- rendering links for sorting challenges based on different conditions -->
+<!-- renders links for sorting challenges based on different conditions -->
 <%= render partial: "groups/sort_links", locals: {instance: @challenge} %>
 
-
-<!-- displaying all challenges in descending order -->
+<!-- displays all challenges in descending order -->
 <%@challenges.each do |challenge|%>
   <%if current_user.name == challenge.creator%>
     <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
@@ -27,4 +26,4 @@
       <button type="button"onclick="location.href='/challenges/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to challenge</button> 
     </div>
   <%end%>
-  <%end%>
+<%end%>

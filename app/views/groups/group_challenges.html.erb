@@ -1,13 +1,12 @@
 <!-- form for adding or removing multiple challenges from the group's challenge list -->
-<%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
-            
-            <%= form_tag("/groups/#{@group.id}/edit_challenges", method: :post) do%>
-            <%Challenge.all.each do |ch|%>
-            <%=label_tag 'group_challenges[]', link_to(ch.title, "/challenges/#{ch.id}", class:"link-to", style:"position:relative; top:24px;")%>
-            <%=check_box_tag 'group_challenges[]', "#{ch.title}"%>
-            <%end%>
-            <br>
-            <%=submit_tag "Add selected challenges", name:"add"%><br>
-            <%=submit_tag "Remove selected challenges", name:"remove"%>
-            <%end%>
+<%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%> 
+    <%= form_tag("/groups/#{@group.id}/edit_challenges", method: :post) do%>
+        <%Challenge.all.each do |ch|%>
+        <%=label_tag 'group_challenges[]', link_to(ch.title, "/challenges/#{ch.id}", class:"link-to", style:"position:relative; top:24px;")%>
+        <%=check_box_tag 'group_challenges[]', "#{ch.title}"%>
+        <%end%>
+        <br>
+        <%=submit_tag "Add selected challenges", name:"add"%><br>
+        <%=submit_tag "Remove selected challenges", name:"remove"%>
+    <%end%>
 <%end%>

@@ -2,19 +2,19 @@
 <div class="w3-row-padding">
   <div class="w3-col m12">
       <div class="w3-card w3-round w3-white">
-      <% if instance && instance.errors.full_messages.any? %>
-        <% instance.errors.full_messages.each do |error_message| %>
-          <%= error_message if instance.errors.full_messages.first == error_message %> <br />
+        <% if instance && instance.errors.full_messages.any? %>
+          <% instance.errors.full_messages.each do |error_message| %>
+            <%= error_message if instance.errors.full_messages.first == error_message %> <br />
+          <% end %>
         <% end %>
-      <% end %>
-      <div class="w3-container w3-padding">
-          <h6 class="w3-opacity"><%=headline%></h6>
-          <%= form_for(instance, method: :post) do |f|%>
-          <%= f.text_field(field1, placeholder: "Provide a #{field1}...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
-          <%= f.text_area(field2, placeholder: "Provide a #{field2}...", class:"textarea-challenge w3-opacity", required: true)%>
-          <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Create <%=instance.class.name%></button> 
-          <%end%>
-      </div>
+        <div class="w3-container w3-padding">
+            <h6 class="w3-opacity"><%=headline%></h6>
+            <%= form_for(instance, method: :post) do |f|%>
+            <%= f.text_field(field1, placeholder: "Provide a #{field1}...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
+            <%= f.text_area(field2, placeholder: "Provide a #{field2}...", class:"textarea-challenge w3-opacity", required: true)%>
+            <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Create <%=instance.class.name%></button> 
+            <%end%>
+        </div>
       </div>
   </div>
 </div><br>

@@ -17,48 +17,48 @@
 
 <!--rendering form for selecting daily and occasional challenges -->
 <%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
-            <br>
-            <img src="/images/list3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-            <h4>Your challenges for <%=Date.today.strftime("%Y-%m-%d")%></h4><br>
-            <hr class="w3-clear">
-            
-            <%= form_tag("/users/#{@user.id}/complete_list", method: :post) do%>
-            <label style="position:relative; left:12px;">Daily challenges</label><br>
-            <%@commitments.select {|commitment| commitment.regularity == "daily"}.each do |c|%>
-                <%=label_tag 'list[]', link_to(c.challenge.title, "/challenges/#{c.challenge.id}", class:"link-to", style:"position:relative; top:24px; left:12px;")%>
-                <%=check_box_tag 'list[]', "#{c.challenge.title}"%>
-            <%end%><br><br>
+        <br>
+        <img src="/images/list3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <h4>Your challenges for <%=Date.today.strftime("%Y-%m-%d")%></h4><br>
+        <hr class="w3-clear">
+        
+        <%= form_tag("/users/#{@user.id}/complete_list", method: :post) do%>
+        <label style="position:relative; left:12px;">Daily challenges</label><br>
+        <%@commitments.select {|commitment| commitment.regularity == "daily"}.each do |c|%>
+            <%=label_tag 'list[]', link_to(c.challenge.title, "/challenges/#{c.challenge.id}", class:"link-to", style:"position:relative; top:24px; left:12px;")%>
+            <%=check_box_tag 'list[]', "#{c.challenge.title}"%>
+        <%end%><br><br>
 
-            <div class="form-group col-md-6 col-lg-6 col-sm-6">
-            <label>Add occasional challenges</label>
-            <select id="DDLActivites" data-style="btn-default" class="selectpicker form-control" multiple data-max-options="50" name="list[]">
-                    <% @commitments.select {|commitment| commitment.regularity == "occasional"}.each do |c| %>
-                        <option value="<%= c.challenge.title %>"><%= c.challenge.title %></option>
-                    <% end %>
-                </select>
-            </div>
-            <br>
-            <%=submit_tag "Submit list"%><br>
-            <%end%>
+        <div class="form-group col-md-6 col-lg-6 col-sm-6">
+        <label>Add occasional challenges</label>
+        <select id="DDLActivites" data-style="btn-default" class="selectpicker form-control" multiple data-max-options="50" name="list[]">
+                <% @commitments.select {|commitment| commitment.regularity == "occasional"}.each do |c| %>
+                    <option value="<%= c.challenge.title %>"><%= c.challenge.title %></option>
+                <% end %>
+            </select>
+        </div>
+        <br>
+        <%=submit_tag "Submit list"%><br>
+        <%end%>
 <%end%>
 
 <!--rendering previous to-do lists -->
 <%if !@user.lists.empty?%>
     <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-            <%@user.lists.recent.each do |list|%>
-                <img src="/images/list2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"><br>
-                <h4><%=list.title%></h4><br>
-                <%list.completed_challenges.each do |ch|%>
+        <%@user.lists.recent.each do |list|%>
+            <img src="/images/list2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"><br>
+            <h4><%=list.title%></h4><br>
+            <%list.completed_challenges.each do |ch|%>
                 <span style="color:lightgreen;"><%=ch%></span><br>
-                <%end%>
-                <br>
-                <p class="w3-opacity">You collected <%=list.completed_challenges.size%> points this day!</p>
-                <br>
-                <%if list.title == Date.today.strftime("%Y-%m-%d")%>
-                    <a href="/users/<%=@user.id%>/undo_list" class="link-to"><span class="w3-opacity" >Undo list</span></a><br>
-                    <hr class="w3-clear">
-                <%end%>
             <%end%>
+            <br>
+            <p class="w3-opacity">You collected <%=list.completed_challenges.size%> points this day!</p>
+            <br>
+            <%if list.title == Date.today.strftime("%Y-%m-%d")%>
+                <a href="/users/<%=@user.id%>/undo_list" class="link-to"><span class="w3-opacity" >Undo list</span></a><br>
+                <hr class="w3-clear">
+            <%end%>
+        <%end%>
     <hr class="w3-clear">
     <a href="/users/<%=@user.id%>/clear_lists" class="link-to"><span class="w3-opacity" >Clear lists</span></a>
     </div>

@@ -9,9 +9,9 @@
     <p><%=@post.content%></p>
 
     <%if !current_user.posts.include?(@post)%>
-    <button type="button"onclick="location.href='/users/<%=@post.user.id%>/posts/<%=@post.id%>/like'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+        <button type="button"onclick="location.href='/users/<%=@post.user.id%>/posts/<%=@post.id%>/like'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
     <%else%>
-    <button type="button"onclick="location.href='/users/<%=@post.user.id%>/posts/<%=@post.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit post</button> 
+        <button type="button"onclick="location.href='/users/<%=@post.user.id%>/posts/<%=@post.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit post</button> 
     <%end%>
     <span class="w3-right w3-opacity"><%=@post.likes.to_s + " likes"%></span> 
     <span class="w3-right w3-opacity" style="margin-right:5px;"><%=@post.comments.size.to_s + " comments"%></span>
@@ -21,8 +21,8 @@
 <div class="w3-container w3-card w3-white w3-round w3-margin">
     <h6 class="w3-opacity">Create a comment:</h6>
     <%= form_tag("/users/#{@post.user.id}/posts/#{@post.id}/comment") do%>
-    <%= text_area_tag("comment[content]", nil, placeholder: "Type your comment here...", class:"textarea-challenge w3-opacity", required: true)%>
-    <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Submit</button> 
+        <%= text_area_tag("comment[content]", nil, placeholder: "Type your comment here...", class:"textarea-challenge w3-opacity", required: true)%>
+        <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Submit</button> 
     <%end%>
     <hr class="w3-clear">
     <%@post.comments.recent.each do |comment|%>

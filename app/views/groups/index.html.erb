@@ -1,11 +1,11 @@
-<!-- rendering form for creating new group -->
+<!-- renders form for creating new group -->
 <%= render partial: "groups/new_form", locals: {instance: @group, field1: :name, field2: :description, headline: "Create a group here. Groups should be organized around a cross-cutting issue or a geographical location."} %>
 
-<!-- rendering links for sorting groups based on different conditions -->
+<!-- renders links for sorting groups based on different conditions -->
 <%= render partial: "groups/sort_links", locals: {instance: @group} %>
 
 
-<!-- displaying all groups and adding routes for editing based on membership typpe -->
+<!-- displays all groups and adds routes for editing based on membership type -->
 <%@groups.each do |group|%>
     <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
       <img src="/images/group1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
@@ -15,8 +15,8 @@
       <hr class="w3-clear">
       <p><%=group.description%></p>
 
-      
       <button type="button"onclick="location.href='/groups/<%=group.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Show group</button> 
+      
       <%if current_user.memberships.created.find {|m| m.group == group}%>
         <button type="button"onclick="location.href='/groups/<%=group.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit group</button> 
       <%end%>

@@ -1,4 +1,4 @@
-<!-- displaying group's data, links for checking missing challenges, commiting to or removing group challenges, checking forum if user is member -->
+<!-- displays group's data and links for checking missing challenges, commiting to or removing group challenges, and displaying forum posts -->
 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
     <img src="/images/group1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
     <span class="w3-right w3-opacity"><%=time_ago_in_words @group.created_at%></span>
@@ -13,9 +13,9 @@
     
     <p>
     <%@challenges.each do |challenge|%>
-    <% colors = ["d1", "d2", "d3", "d4", "d5", "l1", "l2","l3", "l4", "l5"] %>
-    <% color = colors[rand 0..(colors.size)]%>
-        <span class="w3-tag w3-small w3-theme-<%=color%>"><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></a></span>
+      <% colors = ["d1", "d2", "d3", "d4", "d5", "l1", "l2","l3", "l4", "l5"] %>
+      <% color = colors[rand 0..(colors.size)]%>
+      <span class="w3-tag w3-small w3-theme-<%=color%>"><a href="/challenges/<%=challenge.id%>" class="link-to"><%=challenge.title%></a></span>
     <%end%>
     </p>
 
@@ -41,44 +41,44 @@
     <%end%>
 </div>
 
-    <!-- if user is member of the group and clicked on show forum, show create post form -->
-    <%if @forum == true%>
+<!-- if user is member of the group and clicked on show forum, show create post form -->
+<%if @forum == true%>
 
-    <div class="w3-row-padding">
-        <div class="w3-col m12">
-          <div class="w3-card w3-round w3-white">
-            <div class="w3-container w3-padding">
-              <h6 class="w3-opacity">Post to the group</h6>
-              <%= form_tag("/users/#{current_user.id}/posts", method: :post) do%>
-              <%= text_field_tag("post[title]", nil, placeholder: "Provide a title...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
-              <%= text_area_tag("post[content]", nil, placeholder: "Type your post here...", class:"textarea-challenge w3-opacity", required: true)%>
-              <%= hidden_field_tag('post[group]', "#{@group.name}")%>
-              <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
-              <%end%>
-            </div>
-          </div>
-        </div>
+<div class="w3-row-padding">
+  <div class="w3-col m12">
+    <div class="w3-card w3-round w3-white">
+      <div class="w3-container w3-padding">
+        <h6 class="w3-opacity">Post to the group</h6>
+        <%= form_tag("/users/#{current_user.id}/posts", method: :post) do%>
+        <%= text_field_tag("post[title]", nil, placeholder: "Provide a title...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
+        <%= text_area_tag("post[content]", nil, placeholder: "Type your post here...", class:"textarea-challenge w3-opacity", required: true)%>
+        <%= hidden_field_tag('post[group]', "#{@group.name}")%>
+        <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
+        <%end%>
       </div>
+    </div>
+  </div>
+</div>
 
-      <!-- if user is member of the group and clicked on show forum, render previous posts -->
+<!-- renders previous posts if user is a group member and clicked on 'show forum' -->
 
-      <%@posts.recent.each do |post|%>
-      <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-      <img src="<%=post.user.avatar%>" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-      <span class="w3-right w3-opacity"><%=time_ago_in_words post.created_at%></span>
-      <h4><%=post.user.name%></h4><br>
-      <hr class="w3-clear">
-      <p><strong><%=post.title%></strong></p>
-      <p><%=post.content%></p>
-        
-      <%if !current_user.posts.include?(post)%>    
-        <button type="button"onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>/like'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
-        <button type="button" onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>'" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
-      <%else%>
-        <button type="button"onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit post</button> 
-      <%end%>
-        <span class="w3-right w3-opacity"><%=post.likes.to_s + " likes"%></span> 
-        <span class="w3-right w3-opacity" style="margin-right:5px;"><a href="/users/<%=post.user.id%>/posts/<%=post.id%>" class="link-to"><%=post.comments.size.to_s + " comments"%></a></span>
-      </div>
-      <%end%>
-    <%end%>
+<%@posts.recent.each do |post|%>
+  <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
+  <img src="<%=post.user.avatar%>" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+  <span class="w3-right w3-opacity"><%=time_ago_in_words post.created_at%></span>
+  <h4><%=post.user.name%></h4><br>
+  <hr class="w3-clear">
+  <p><strong><%=post.title%></strong></p>
+  <p><%=post.content%></p>
+  
+  <%if !current_user.posts.include?(post)%>    
+    <button type="button"onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>/like'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i>  Like</button> 
+    <button type="button" onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>'" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-comment"></i>  Comment</button>
+  <%else%>
+    <button type="button"onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit post</button> 
+  <%end%>
+    <span class="w3-right w3-opacity"><%=post.likes.to_s + " likes"%></span> 
+    <span class="w3-right w3-opacity" style="margin-right:5px;"><a href="/users/<%=post.user.id%>/posts/<%=post.id%>" class="link-to"><%=post.comments.size.to_s + " comments"%></a></span>
+  </div>
+  <%end%>
+<%end%>

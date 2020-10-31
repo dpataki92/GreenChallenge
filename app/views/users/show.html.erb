@@ -1,4 +1,4 @@
-<!--Creating post form-->
+<!--Creates post form-->
 <div class="w3-row-padding">
     <div class="w3-col m12">
       <div class="w3-card w3-round w3-white">
@@ -22,7 +22,7 @@
     </div>
 </div>
 
-<!--Rendering newsfeed from posts made in user's groups-->
+<!--Renders newsfeed from posts of user's groups-->
 <%newsfeed(@user).each do |post|%>
   <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
     <img src="<%=post.user.avatar%>" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
