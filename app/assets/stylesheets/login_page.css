@@ -12,7 +12,7 @@ body {
   border-radius: 5px;
   background-color: white;
   padding: 20px 0 30px 0;
-} 
+}
 
 /* style inputs and link buttons */
 input,
@@ -149,6 +149,8 @@ body {
   padding: 20px;
   background-color: #77cc6d;
   font-family: 'Raleway Dots', sans-serif;
+  background-image: url("/images/green_01.jpg");
+  background-size: cover;
 }
 
 #formContent {
