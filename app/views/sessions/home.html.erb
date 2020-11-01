@@ -19,9 +19,9 @@
         <%end%>
 
         <%= content_tag(:div, class: "col") do %>
-            <a href="/auth/facebook" class="fb btn">
+            <%= link_to "/auth/facebook", class: "fb btn" do %>
              <i class="fa fa-facebook-official"></i> Continue with Facebook 
-            </a>
+            <%end%>
             <%= link_to "/auth/twitter", class: "twitter btn" do%>
               <i class="fa fa-twitter"></i> Continue with Twitter
             <%end%>

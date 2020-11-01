@@ -1,7 +1,8 @@
 <!-- form for manual signup -->
 <div class="wrapper fadeInDown">
   <div id="formContent">
-    <img src="/images/globe.png" alt="Avatar" class="globe-center w3-opacity" style="width:40px">
+        <br>
+        <%= link_to "Back to login", "/", style:"color:green; font-weight:bold; text-decoration:none;"%>
         <%= form_tag("/signup") do%>
             <%= text_field_tag("user[name]", nil, placeholder: "Name", required: true)%>
             <%= text_field_tag("user[email]", nil, placeholder: "Email", required: true)%>
@@ -255,7 +256,7 @@
                 <option value="Zambia">Zambia</option>
                 <option value="Zimbabwe">Zimbabwe</option>
             </datalist>
-            <%= submit_tag "Sign up", style:"color:green; font-weight:bold; background-color:white;"%>
+            <%= submit_tag "Sign up", style:"color:white; font-weight:bold; background-color:#4CAF50;"%>
             <%end%>
   </div>
 </div>
