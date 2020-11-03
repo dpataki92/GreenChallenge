@@ -36,7 +36,7 @@ class PostsController < ApplicationController
             if @post
                 @post.group = @group
                 @post.save
-                redirect_to "/groups/#{@group.id}/forum/"
+                redirect_to "/users/#{current_user.id}/posts/#{@post.id}"
             else
                 redirect_to "/", notice: "Sorry, invalid post data!"
             end

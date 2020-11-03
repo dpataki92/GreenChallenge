@@ -7,8 +7,8 @@
           <h6 class="w3-opacity">Share A Post:</h6>
           <%= form_tag("/users/#{current_user.id}/posts", :method => :post) do%>
           <%= text_field_tag("post[title]", nil, placeholder: "Provide a title...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
-          <%= text_area_tag("post[content]", nil, placeholder: "Type your post here...", class:"textarea-challenge w3-opacity", required: true)%>
-          <%= text_field_tag("post[group]", nil, placeholder: "Associate a group with the post...", list: "groups", class: "w3-border w3-padding w3-opacity")%><br>
+          <%= text_area_tag("post[content]", nil, placeholder: "Write your post...", class:"textarea-challenge w3-opacity", required: true)%>
+          <%= text_field_tag("post[group]", nil, placeholder: "Add your post to a group...", list: "groups", class: "w3-border w3-padding w3-opacity")%><br>
           <datalist id="groups">
             <%@user.groups.all.each do |g|%>
               <option value="<%=g.name%>"><%=g.name%></option>
