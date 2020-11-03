@@ -18,17 +18,15 @@
 </div>
 
 <!-- renders form for creating comment -->
-<div class="w3-container w3-card w3-white w3-round w3-margin">
-    <h6 class="w3-opacity">Create a comment:</h6>
-    <%= form_tag("/users/#{@post.user.id}/posts/#{@post.id}/comment") do%>
-        <%= text_area_tag("comment[content]", nil, placeholder: "Type your comment here...", class:"textarea-challenge w3-opacity", required: true)%>
-        <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Submit</button> 
-    <%end%>
-    <hr class="w3-clear">
+<div class="w3-container w3-card w3-white w3-round w3-margin" style="padding-bottom:5px;">
     <%@post.comments.recent.each do |comment|%>
         <h6><strong><%=comment.user.name%></strong></h6>
-        <p><%=comment.content%></p><br>
+        <p><%=comment.content%></p>
         <span class="w3-opacity"><%=time_ago_in_words comment.created_at%></span>
         <hr class="w3-clear">
     <%end%>
-  </div>
+    <%= form_tag("/users/#{@post.user.id}/posts/#{@post.id}/comment") do%>
+        <%= text_area_tag("comment[content]", nil, placeholder: "Write a comment...", class:"textarea-challenge w3-opacity", required: true)%>
+        <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i> Submit</button>
+    <%end%>
+</div>
