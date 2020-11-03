@@ -18,7 +18,7 @@
 </div>
 
 <!-- renders form for creating comment -->
-<div class="w3-container w3-card w3-white w3-round w3-margin" style="padding-bottom:5px;">
+<div class="w3-container w3-card w3-white w3-round w3-margin" style="padding:10px;">
     <%@post.comments.recent.each do |comment|%>
         <h6><strong><%=comment.user.name%></strong></h6>
         <p><%=comment.content%></p>
