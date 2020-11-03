@@ -266,6 +266,11 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
     color: gray;
   }
 
+  .link-to.action {
+    color: #77cc6d;
+    font-weight: bold;
+  }
+
   .link-to:link {
       text-decoration: none;
   }

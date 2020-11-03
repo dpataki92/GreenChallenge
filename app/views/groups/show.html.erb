@@ -1,15 +1,15 @@
 <!-- displays group's data and links for checking missing challenges, commiting to or removing group challenges, and displaying forum posts -->
 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
     <img src="/images/group1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
-    <span class="w3-right w3-opacity"><%=time_ago_in_words @group.created_at%></span>
+    <span class="w3-right w3-opacity">Created <%=time_ago_in_words @group.created_at%> ago</span>
     <h4><a href="/groups/<%=@group.id%>" class="link-to"><%=@group.name%></h4><a><br>
     <span class="w3-opacity"><%="#{@group.users.size} users"%></span>
     <hr class="w3-clear">
     <p><%=@group.description%></p>
     <hr class="w3-clear">
     
-    <h6>The group has <%=@group.challenges.size%> recommended challenges.</h6>
-    <a href="/groups/<%=@group.id%>/sort_challenges" class="link-to"><span class="w3-opacity" >Show missing challenges only</span></a>
+    <h6><span class="w3-opacity" ><%=@group.challenges.size%> recommended challenges.</span></h6>
+    <a href="/groups/<%=@group.id%>/sort_challenges" class="link-to action"><span class="w3-opacity" >Show missing challenges</span></a>
     
     <p>
     <%@challenges.each do |challenge|%>
@@ -22,22 +22,22 @@
     <%if @group.challenges.all? {|c| current_user.challenges.include?(c)}%>
       <button type="button"onclick="location.href='/groups/<%=@group.id%>/uncommit_all'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-close"></i> Remove group challenges from my challenges</button>
     <%else%>
-      <button type="button"onclick="location.href='/groups/<%=@group.id%>/commit_all/daily'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to all as daily challenges</button>
-      <button type="button"onclick="location.href='/groups/<%=@group.id%>/commit_all/occasional'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to all as occasional challenges</button>
+      <button type="button"onclick="location.href='/groups/<%=@group.id%>/commit_all/daily'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-check"></i> Commit to all as daily challenges</button>
+      <button type="button"onclick="location.href='/groups/<%=@group.id%>/commit_all/occasional'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-check"></i> Commit to all as occasional challenges</button>
     <%end%>
     <hr class="w3-clear">
 
     <%if @group_member%>
-      <a href="/groups/<%=@group.id%>/forum" class="link-to"><span class="w3-opacity" style="margin-right:5px">Show forum</span></a>
+      <a href="/groups/<%=@group.id%>/forum" class="link-to action"><span class="w3-opacity" style="margin-right:5px">Show forum</span></a>
     <%else%>
       <button type="button"onclick="location.href='/groups/<%=@group.id%>/join'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Join group</button> 
     <%end%>
 
     <%if @group_creator%>
-      <a href="/groups/<%=@group.id%>/edit"><span class="w3-opacity w3-right link-to" >Edit group data</span></a>
-      <a href="/groups/<%=@group.id%>/group_challenges"><span class="w3-opacity w3-right link-to" style="margin-right:5px;">Edit group challenges</span></a>
+      <a href="/groups/<%=@group.id%>/edit"><span class="w3-opacity w3-right link-to action" >Edit group data</span></a>
+      <a href="/groups/<%=@group.id%>/group_challenges"><span class="w3-opacity w3-right link-to action" style="margin-right:5px;">Edit group challenges</span></a>
     <%elsif @group_member%>
-      <a href="/groups/<%=@group.id%>/leave" class="link-to" onclick="return confirm('Are you sure you want to leave the group?');"><span class="w3-opacity w3-right" >Leave the group</span></a><br><br>
+      <a href="/groups/<%=@group.id%>/leave" class="link-to action" onclick="return confirm('Are you sure you want to leave the group?');"><span class="w3-opacity w3-right" >Leave the group</span></a><br><br>
     <%end%>
 </div>
 
