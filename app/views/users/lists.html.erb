@@ -10,10 +10,8 @@
         <%= form_tag("/users/#{@user.id}/complete_list", method: :post) do%>
         <strong><label style="margin-bottom:-2em;">Daily challenges</label></strong><br>
         <%@commitments.select {|commitment| commitment.regularity == "daily"}.each do |c|%>
-            <div>
             <%=label_tag 'list[]', link_to(c.challenge.title, "/challenges/#{c.challenge.id}", class:"link-to", style:"position:relative; top:23px;")%>
             <%=check_box_tag 'list[]', "#{c.challenge.title}", false, class:"list-checkbox"%>
-            </div>
         <%end%><br><br>
 
         <div class="form-group col-md-6 col-lg-6 col-sm-6">

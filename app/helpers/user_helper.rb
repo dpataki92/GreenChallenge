@@ -46,7 +46,7 @@ module UserHelper
         if diff == 0
            current_user.points
         else
-            (current_user.points / diff).round
+            (current_user.points.to_f / diff.to_f).round(1)
         end
 
     end
