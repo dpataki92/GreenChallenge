@@ -4,7 +4,7 @@
       <div class="w3-card w3-round w3-white">
         <div class="w3-container w3-padding">
 
-          <h6 class="w3-opacity">Share A Post:</h6>
+          <h6 class="w3-opacity">Share your thoughts:</h6>
           <%= form_tag("/users/#{current_user.id}/posts", :method => :post) do%>
           <%= text_field_tag("post[title]", nil, placeholder: "Provide a title...", class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
           <%= text_area_tag("post[content]", nil, placeholder: "Write your post...", class:"textarea-challenge w3-opacity", required: true)%>
@@ -15,7 +15,7 @@
             <%end%>
           </datalist>
 
-          <button type="submit" class="w3-button w3-theme"><i class="fa fa-pencil"></i>  Post</button> 
+          <button type="submit" class="w3-button w3-theme"><i class="fa fa-reply"></i> Submit</button> 
           <%end%>
         </div>
       </div>
@@ -43,7 +43,7 @@
     <%if !current_user.posts.include?(post)%>
       <button type="button" onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>'" class="w3-button w3-theme-d2 w3-margin-bottom"><i class="fa fa-arrow-right"></i> Show thread</button>
     <%else%>
-      <button type="button"onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit post</button> 
+      <button type="button"onclick="location.href='/users/<%=post.user.id%>/posts/<%=post.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-edit"></i> Edit</button> 
     <%end%>
     <span class="w3-right w3-opacity"><%=post.likes.to_s + " likes"%></span> 
     <span class="w3-right w3-opacity" style="margin-right:5px;"><a href="/users/<%=post.user.id%>/posts/<%=post.id%>" class="link-to"><%=post.comments.size.to_s + " comments"%></a></span>
