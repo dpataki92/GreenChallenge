@@ -144,9 +144,13 @@
 
 # assigns random comments to posts
     20.times do
-        post = Post.all[rand 0..(Post.all.size)]
+        post = Post.all[rand 0..(Post.all.size-1)]
         
-        post.comments.create(content: "consectetur adipisicing elit", user: User.all[rand 0..(User.all.size)])
+        post.comments.create(content: "consectetur adipisicing elit", user: User.all[rand 0..(User.all.size-1)])
     end
 
-    
+# assigns random avatar picture to users
+User.all.each do |u|
+    u.avatar = "/images/a#{rand(1..10)}.png"
+    u.save
+end
