@@ -7,6 +7,11 @@ class ApplicationController < ActionController::Base
     def logged_in?
         !!session[:user_id]
     end
+
+    # returns current user
+    def current_user
+        User.find_by(id: session[:user_id])
+    end
    
     # sorts challenges based on four conditions: creation date, popularity, alphabetical order, current user's challenges
     def sort_challenges
