@@ -324,3 +324,24 @@ hr{border:0;border-top:1px solid #eee;margin:20px 0}
   position:relative; 
   right:2em;
 }
+
+footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+footer a {
+  text-decoration: none;
+  font-size: 18px;
+}
+
+footer a:hover {
+  color: gray;
+}
+
+.fa-github {
+  height: 10px;
+  width: 10px;
+}
