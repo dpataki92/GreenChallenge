@@ -76,7 +76,7 @@ ActiveRecord::Schema.define(version: 2020_07_25_165420) do
     t.string "password_digest"
     t.string "country", default: ""
     t.integer "points", default: 0
-    t.string "avatar", default: "/images/avatar7.jpg"
+    t.string "avatar", default: "/images/a1.png"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "uid"

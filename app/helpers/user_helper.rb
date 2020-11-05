@@ -13,7 +13,7 @@ module UserHelper
 
     # returns all built-in profile pictures
     def avatar_selection
-        avatar_array = ["/images/avatar0.png", "/images/avatar1.png", "/images/avatar2.png", "/images/avatar3.png", "/images/avatar5.png", "/images/avatar6.png", "/images/avatar7.jpg"]
+        avatar_array = ["/images/a1.png", "/images/a2.png", "/images/a3.png", "/images/a4.png", "/images/a5.png", "/images/a6.png", "/images/a7.png", "/images/a8.png", "/images/a9.png", "/images/a10.png"]
     end
 
     # returns current user
