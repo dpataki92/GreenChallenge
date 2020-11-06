@@ -11,6 +11,21 @@ The application helps users to build stronger green habits, hold themselves acco
 - join or create groups organized around a green issue or a location, share posts with group members, and commit to group challenges
 - stay up-to-date with group news by following the news feed 
 
+# Technologies
+
+- Ruby 2.6.1
+- Ruby on Rails 6.0.3
+- SQLite3 1.4.2
+- Puma 4.3.6
+- Bcrypt 3.1.16
+- Dotenv-rails 2.7.6
+- Pry 0.13.1
+- Omniauth 1.9.1
+- Oauth2 1.4.4
+- Omniauth-facebook 0.8.0
+- Omniauth-google-oauth2 1.7.0
+- Omniauth-twitter 1.4.0 
+
 # Installation
 
 - Fork and git clone repo. 
