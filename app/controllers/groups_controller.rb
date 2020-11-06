@@ -103,6 +103,8 @@ class GroupsController < ApplicationController
         if logged_in?
             @group = Group.find_by(id: params[:id])
             @challenges = @group.challenges.select {|ch| !current_user.challenges.include?(ch)}
+            @group_member = group_member?(@group)
+            @group_creator = group_creator?(@group)
 
             render :show
         else
