@@ -8,7 +8,7 @@
 <!-- displays all groups and adds routes for editing based on membership type -->
 <%@groups.each do |group|%>
     <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-      <img src="/images/group1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+      <img src="/images/group.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
       <span class="w3-right w3-opacity"><%=time_ago_in_words group.created_at%></span>
       <h4><a href="/groups/<%=group.id%>" class="link-to"><%=group.name%></h4><a><br>
       <span class="w3-opacity"><%="#{group.users.size} users"%></span>
@@ -18,7 +18,7 @@
       <button type="button"onclick="location.href='/groups/<%=group.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-arrow-right"></i> Show group</button> 
       
       <%if current_user.memberships.created.find {|m| m.group == group}%>
-        <button type="button"onclick="location.href='/groups/<%=group.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit group</button> 
+        <button type="button"onclick="location.href='/groups/<%=group.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-edit"></i> Edit</button> 
       <%end%>
     </div>
   <%end%>

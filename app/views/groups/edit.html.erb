@@ -8,11 +8,11 @@
         <%= form_for(@group) do |f|%>
             <%= f.text_field(:name, class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
             <%= f.text_area(:description, class:"textarea-challenge w3-opacity", required: true)%>
-            <button class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-edit" ></i> Edit group</button>
+            <button class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-check" ></i> Save</button>
             <hr class="w3-clear">
         <%end%>
         <%= form_for(@group, method: :delete) do %>
-            <button onclick="return confirm('Are you sure you want to delete the group?');" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-close" ></i> Delete group</button>
+            <button onclick="return confirm('Are you sure you want to delete the group?');" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-close" ></i> Delete</button>
         <%end%>
     </div>
 </div>

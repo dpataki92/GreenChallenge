@@ -13,8 +13,8 @@
       <span class="w3-opacity"><%="#{challenge.groups.size} groups"%></span>
       <span class="w3-opacity" style="margin-right:5px;"><%="#{challenge.users.size} users"%></span>
       <hr class="w3-clear"> 
-      <button type="button"onclick="location.href='/challenges/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to challenge</button> 
-      <button type="button"onclick="location.href='/challenges/<%=challenge.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit challenge</button> 
+      <button type="button"onclick="location.href='/challenges/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-arrow-right"></i> Show challenge</button> 
+      <button type="button"onclick="location.href='/challenges/<%=challenge.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-edit"></i> Edit</button> 
     </div>
   <%else%>
     <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
@@ -23,7 +23,7 @@
       <span class="w3-opacity"><%="#{challenge.groups.size} groups"%></span>
       <span class="w3-opacity" style="margin-right:5px;"><%="#{challenge.users.size} users"%></span>
       <hr class="w3-clear"> 
-      <button type="button"onclick="location.href='/challenges/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-thumbs-up"></i> Commit to challenge</button> 
+      <button type="button"onclick="location.href='/challenges/<%=challenge.id%>'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-arrow-right"></i> Show challenge</button> 
     </div>
   <%end%>
 <%end%>

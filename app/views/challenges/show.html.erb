@@ -21,7 +21,7 @@
         <span class="w3-right w3-opacity" style="margin-right:5px;"><%=@challenge.groups.size.to_s + " groups"%></span>
     <%end%>
     <%if @challenge.creator == current_user.name%>
-       <button type="button"onclick="location.href='/challenges/<%=@challenge.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-pencil"></i> Edit challenge</button>
+       <button type="button"onclick="location.href='/challenges/<%=@challenge.id%>/edit'" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-edit"></i> Edit</button>
     <%end%>
 </div>
 
