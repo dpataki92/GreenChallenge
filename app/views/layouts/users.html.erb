@@ -89,6 +89,19 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
     
     <!-- Right Column -->
     <div class="w3-col m2">
+
+      <%if !current_user.lists.last || current_user.lists.last.updated_at.strftime("%Y-%m-%d") != Date.today.strftime("%Y-%m-%d")%>
+        <div class="w3-card w3-round w3-white w3-center">
+        <img src="/images/reminders.png" class="w3-center w3-circle w3-margin-right" style="width:60px; margin-top:5px;">
+          <div class="w3-container">
+            <p style="font-weight:bold;">You have <%=current_user.commitments.select{|c| c.regularity === "daily"}.size%> pending challenges for today!</p>
+            <div class="w3-row w3-opacity">
+                <button onclick=location.href="/users/<%=current_user.id%>/lists" class="w3-button w3-block w3-red w3-section"><i class="fa fa-arrow-right"></i> Show my list</button>
+            </div>
+          </div>
+        </div><br>
+      <%end%>
+
       <div class="w3-card w3-round w3-white w3-center">
         <div class="w3-container">
           <p><strong>Total points:</strong></p>
@@ -97,15 +110,17 @@ html, body, h1, h2, h3, h4, h5 {font-family: "Open Sans", sans-serif}
             <%=current_user.posts.size%>
           <p><strong>Total commitments:</strong></p>
             <%=current_user.commitments.size%>
-          <p><button onclick="location.href='/users/<%=current_user.id%>/report'" class="w3-button w3-block w3-theme-l4">Generate Report</button></p>
+          <div class="w3-row w3-opacity">
+                <button onclick=location.href="/users/<%=current_user.id%>/report" class="w3-button w3-block w3-green w3-section"><i class="fa fa-arrow-right"></i> Generate report</button>
+          </div>
         </div>
       </div>
       <br>
       
-
-      
     <!-- End Right Column -->
     </div>
+      </div>
+
     
   <!-- End Grid -->
   </div>
