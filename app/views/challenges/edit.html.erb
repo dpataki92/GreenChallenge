@@ -5,11 +5,14 @@
     <h4><%=@challenge.title%></h4><br>
     <hr class="w3-clear">
     <div class="w3-container w3-padding">
-            <%= form_for(@challenge) do |f|%>
-            <%= f.text_field(:title, class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
-            <%= f.text_area(:description, class:"textarea-challenge w3-opacity", required: true)%>
-            <%= button_to 'Edit challenge', challenge_path(@challenge), method: :patch, class:"w3-button w3-theme-d1 w3-margin-bottom" %>
-            <%= button_to 'Delete challenge', "/challenges/#{@challenge.id}", method: :delete, class:"w3-button w3-theme-d1 w3-margin-bottom"%>
-            <%end%>
-        </div>
+        <%= form_for(@challenge) do |f|%>
+        <%= f.text_field(:title, class: "w3-border w3-padding text-field-post w3-opacity", required: true)%>
+        <%= f.text_area(:description, class:"textarea-challenge w3-opacity", required: true)%>
+        <button class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-check" ></i> Save</button>
+        <hr class="w3-clear">
+        <%end%>
+        <%= form_for(@challenge, method: :delete) do %>
+            <button onclick="return confirm('Are you sure you want to delete the challenge?');" class="w3-button w3-theme-d1 w3-margin-bottom"><i class="fa fa-close" ></i> Delete</button>
+        <%end%>
+    </div>
 </div>
