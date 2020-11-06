@@ -1,16 +1,47 @@
 <!-- renders total user data values -->
 <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
-    <img src="/images/report1.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+    <img src="/images/report.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
     <span class="w3-right w3-opacity"><%=Date.today%></span>
     <h4>Performance report</h4><br>
     <hr class="w3-clear">
-    <strong>Performance per goal: </strong><button class="<%if performance.start_with?("-")%> w3-red <%else%> w3-green<%end%> w3-section" title="Accept"><%=performance%></button><br>
-    <strong>Average point: </strong><%=avg_point%><br>
-    <strong>Average point goal: </strong><%=current_user.goal%><br>
-    <strong>Total points: </strong><%=current_user.points%><br>
-    <strong>Total commitments: </strong><%=current_user.commitments.size%><br>
-    <strong>Number of daily challenges: </strong><%=num_of_challenges("daily")%><br>
-    <strong>Number of occasional challenges: </strong><%=num_of_challenges("occasional")%><br>
-    <strong>Number of posts shared: </strong><%=current_user.posts.size%><br>
-    <strong>Number of likes for posts: </strong><%=num_of_likes%><br>
+    <table>
+    <thead>
+        <tr>
+        <th>Total commitments</th>
+        <th>Daily challenges</th>
+        <th>Occasional challenges</th>
+        <th>Posts</th>
+        <th>Likes</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td><%=current_user.commitments.size%></td>
+        <td><%=num_of_challenges("daily")%></td>
+        <td><%=num_of_challenges("occasional")%></td>
+        <td><%=current_user.posts.size%></td>
+        <td><%=num_of_likes%></td>
+        </tr>
+    </tbody>
+    </table>
+        <table>
+    <thead>
+        <tr>
+        <th>Group memberships</th>
+        <th>Average point</th>
+        <th>Average point goal</th>
+        <th>Total points</th>
+        <th>Performance</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td><%=current_user.groups.size%>
+        <td><%=avg_point%></td>
+        <td><%=current_user.goal%></td>
+        <td><%=current_user.points%></td>
+        <td><span style="color:<%if performance.start_with?("-")%> red <%else%> green<%end%>"><%=performance%></span></td>
+        </tr>
+    </tbody>
+    </table>
 </div>
