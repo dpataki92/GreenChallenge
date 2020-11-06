@@ -2,13 +2,13 @@
 
 Simple social network platform built in Ruby on Rails for people who intend to pursue an eco-friendly lifestyle. 
 
-The application helps users to build stronger green habits, hold themselves accountable, and engage with like-minded people. Besides other features, users can:  
+The application helps users to build stronger green habits, hold themselves accountable, and engage with like-minded people. Among other features, users can:  
  
 - commit to built-in challenges that represent green habits
 - create new challenges and share them with other users
-- generate daily to-do lists with timely challenges, get notifications about due to-dos, and collect points for completed challenges
-- set point goals and generate reports to track progress
-- join or create groups organized around a green issue, share posts with group members, and commit to group challenges
+- generate daily to-do lists, get notifications about due to-dos, and collect points for completed challenges
+- set goals and generate reports to track progress
+- join or create groups organized around a green issue or a location, share posts with group members, and commit to group challenges
 - stay up-to-date with group news by following the news feed 
 
 # Installation
@@ -17,13 +17,15 @@ The application helps users to build stronger green habits, hold themselves acco
 
 # Usage
 
-- Cd into folder.
+- Cd into folder
 
-- Run bundle install to install dependencies.
+- Run 'bundle install' to install dependencies
 
-- Run rake db:migrate and rake db:seed.
+- Run 'rails db:migrate' and 'rails db:seed'
 
-- Run rails s.
+- Run 'rails s'
+
+- Sign up manually or log in with social media account
 
 # Contributing
 
