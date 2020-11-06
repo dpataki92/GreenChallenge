@@ -1,9 +1,14 @@
 
 
 <!--rendering form for selecting daily and occasional challenges -->
-<%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
+<%if @user.lists.last && @user.lists.last.updated_at.strftime("%Y-%m-%d") === Date.today.strftime("%Y-%m-%d")%>
+    <%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
+        <strong style="padding:5px; color:green;"><i class="fa fa-check"></i><p style="display:inline;"> You already submitted a to-do list for today!</p></strong><br>
+    <%end%>
+<%else%>
+    <%= content_tag(:div, class: "w3-container w3-card w3-white w3-round w3-margin") do%>
         <br>
-        <img src="/images/list3.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px">
+        <img src="/images/checklist.png" alt="Avatar" class="w3-left w3-margin-right" style="width:60px">
         <h4>Your challenges for <%=Date.today.strftime("%Y-%m-%d")%></h4><br>
         <hr class="w3-clear">
         
@@ -26,16 +31,17 @@
         <br>
         <%=submit_tag "Submit list"%><br>
         <%end%>
+    <%end%>
 <%end%>
 
 <!--rendering previous to-do lists -->
 <%if !@user.lists.empty?%>
     <div class="w3-container w3-card w3-white w3-round w3-margin"><br>
         <%@user.lists.recent.each do |list|%>
-            <img src="/images/list2.jpg" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:60px"><br>
+            <img src="/images/checked.png" alt="Avatar" class="w3-left w3-circle w3-margin-right" style="width:40px"><br>
             <h4><%=list.title%></h4><br>
             <%list.completed_challenges.each do |ch|%>
-                <span style="color:lightgreen;"><%=ch%></span><br>
+                <span style="color:green;"><%=ch%></span><br>
             <%end%>
             <br>
             <p class="w3-opacity">You collected <%=list.completed_challenges.size%> points this day!</p>
